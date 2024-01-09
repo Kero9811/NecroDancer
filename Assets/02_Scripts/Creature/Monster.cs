@@ -10,7 +10,7 @@ public enum Type
     Bat
 }
 
-public class Monster : MonoBehaviour
+public abstract class Monster : MonoBehaviour
 {
     public int currentHp;
     public int maxHp;
@@ -26,7 +26,7 @@ public class Monster : MonoBehaviour
         actionCount = originCount;
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         currentHp -= damage;
 

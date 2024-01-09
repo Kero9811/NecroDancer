@@ -13,6 +13,7 @@ public class Dragon : Monster
     Node[,] NodeArray;
     Node StartNode, TargetNode, CurNode;
     List<Node> OpenList, ClosedList;
+    MonsterHpUI monsterHp;
 
 
     [SerializeField] float maxHeight;
@@ -24,6 +25,7 @@ public class Dragon : Monster
     private void Start()
     {
         target = FindObjectOfType<Player>();
+        monsterHp = GetComponentInChildren<MonsterHpUI>();
     }
 
     public void Move()  // 특수 액션에 들어가지 않았다면 실행, 들어갔다면 return
@@ -55,6 +57,18 @@ public class Dragon : Monster
         else
         {
             actionCount--;
+        }
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        currentHp -= damage;
+        monsterHp.ChangeHpUI();
+
+        if (currentHp <= 0)
+        {
+            currentHp = 0;
+            Die();
         }
     }
 

@@ -17,19 +17,26 @@ public class MonsterHpUI : MonoBehaviour
         dragon = GetComponentInParent<Dragon>();
         images = GetComponentsInChildren<Image>();
     }
-
-    private void Update()
-    {
-        ChangeHpUI();
-    }
-
     private void Start()
     {
         heartCount = dragon.currentHp;
+
+        for (int i = 0; i < images.Length; i++)
+        {
+            images[i].gameObject.SetActive(false);
+        }
     }
 
     public void ChangeHpUI()
     {
+        if (!images[0].gameObject.activeSelf)
+        {
+            for (int i = 0; i < images.Length; i++)
+            {
+                images[i].gameObject.SetActive(true);
+            }
+        }
+
         int loseHp = dragon.maxHp - dragon.currentHp;
         emptyHeart = loseHp;
 

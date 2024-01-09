@@ -55,12 +55,10 @@ public class Bat : Monster
 
             if (hit2.collider != null)
             {
-                print("isWall");
                 return;
             }
             else if (hit.Length >= 2)
             {
-                print("isMonster");
                 return;
             }
             else
