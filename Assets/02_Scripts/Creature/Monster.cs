@@ -30,7 +30,7 @@ public class Monster : MonoBehaviour
     {
         currentHp -= damage;
 
-        if(currentHp <= 0)
+        if (currentHp <= 0)
         {
             currentHp = 0;
             Die();
@@ -49,6 +49,10 @@ public class Monster : MonoBehaviour
         else if (type == Type.Bat)
         {
             GameManager.Instance.bats.Remove(gameObject.GetComponent<Bat>());
+        }
+        else if (type == Type.Dragon)
+        {
+            GameManager.Instance.dragons.Remove(gameObject.GetComponent<Dragon>());
         }
         Destroy(gameObject);
     }

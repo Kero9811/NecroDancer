@@ -40,8 +40,6 @@ public class ControlHpUI : MonoBehaviour
         }
         halfHeartIndex = emptyHeart;
 
-        print(isHalfHeart);
-
         if (isHalfHeart)
         {
             if (emptyHeart != 0)

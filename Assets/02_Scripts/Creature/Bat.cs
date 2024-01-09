@@ -13,7 +13,6 @@ public class Bat : Monster
     [SerializeField] Vector3 slideTargetPos;
     public double currentTime = 0;
     Player target;
-    Monster monster;
 
     Vector2 myPos;
     public LayerMask targetLayer;
@@ -21,16 +20,16 @@ public class Bat : Monster
 
     private void Start()
     {
-        monster = GetComponent<Monster>();
         target = FindObjectOfType<Player>();
     }
 
     public void Move()
     {
-        if (monster.actionCount == 0)
+        if (actionCount == 0)
         {
             int dir = Random.Range(0, 4);
             Vector2 myDir = Vector2.zero;
+            targetPos = new Vector2Int((int)target.nextPos.x, (int)target.nextPos.y);
 
             switch (dir)
             {
@@ -66,14 +65,21 @@ public class Bat : Monster
             }
             else
             {
-                Slide(myPos);
+                if (myPos == targetPos)
+                {
+                    target.TakeDamage(damage);
+                }
+                else
+                {
+                    Slide(myPos);
+                }
             }
 
-            monster.actionCount = monster.originCount;
+            actionCount = originCount;
         }
         else
         {
-            monster.actionCount--;
+            actionCount--;
         }
     }
 

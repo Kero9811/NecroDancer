@@ -58,7 +58,6 @@ public class Dragon : Monster
         }
     }
 
-
     public void PathFinding()
     {
         // NodeArray의 크기 정해주고, isWall, x, y 대입
