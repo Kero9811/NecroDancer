@@ -12,10 +12,10 @@ public class Player : MonoBehaviour
     SpriteRenderer headRenderer;
     SpriteRenderer bodyRenderer;
 
-    [SerializeField] int currentHp;
-    [SerializeField] int maxHp;
-    [SerializeField] int damage;
-    [SerializeField] int defense;
+    public int currentHp;
+    public int maxHp;
+    public int damage;
+    public int defense;
     public int currentCoinPoint = 1;
     [SerializeField] int maxCoinPoint = 4;
     public int coinAmount;
@@ -228,6 +228,8 @@ public class Player : MonoBehaviour
         GameManager.Instance.shakeCamera.StartShake();
 
         currentHp -= damage;
+
+        GameManager.Instance.controlHpUI.ChangeHpUI();
 
         if (currentHp <= 0)
         {

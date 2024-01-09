@@ -19,10 +19,12 @@ public class GameManager : MonoBehaviour
 
     public NoteManager noteManager;
     public TilemapRenderer tilemapRenderer;
+    public ControlHpUI controlHpUI;
     
     // 스폰 시 리스트에 추가
     public List<Skeleton> skeletons = new List<Skeleton>();
     public List<Bat> bats = new List<Bat>();
+    public List<Dragon> dragons = new List<Dragon>();
 
     private void Awake()
     {
@@ -60,6 +62,11 @@ public class GameManager : MonoBehaviour
                     bat.Move();
                 }
 
+                foreach (var dragon in dragons)
+                {
+                    dragon.Move();
+                }
+
                 tilemapRenderer.enabled = !tilemapRenderer.enabled;
             }
 
@@ -79,6 +86,11 @@ public class GameManager : MonoBehaviour
         foreach (var bat in bats)
         {
             bat.Move();
+        }
+
+        foreach (var dragon in dragons)
+        {
+            dragon.Move();
         }
 
         tilemapRenderer.enabled = !tilemapRenderer.enabled;
