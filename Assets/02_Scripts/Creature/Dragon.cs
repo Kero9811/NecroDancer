@@ -1,24 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-
-[System.Serializable]
-public class Node
-{
-    public Node(bool _isWall, int _x, int _y) { isObstacle = _isWall; x = _x; y = _y; }
-
-    public bool isObstacle;
-    public Node ParentNode;
-
-    // G : 시작으로부터 이동했던 거리, H : |가로|+|세로| 장애물 무시하여 목표까지의 거리, F : G + H
-    public int x, y, G, H;
-    public int F { get { return G + H; } }
-}
-
-
-public class AStarMoving : MonoBehaviour
+public class Dragon : Monster
 {
     public Vector2Int bottomLeft, topRight, startPos, targetPos;
     public List<Node> FinalNodeList;
@@ -37,18 +21,14 @@ public class AStarMoving : MonoBehaviour
     [SerializeField] Vector3 jumpTargetPos;
     public double currentTime = 0;
 
-    Monster monster;
-
-
     private void Start()
     {
-        monster = GetComponent<Monster>();
         target = FindObjectOfType<Player>();
     }
 
     public void Move()  // 특수 액션에 들어가지 않았다면 실행, 들어갔다면 return
     {
-        if (monster.actionCount == 0)
+        if (actionCount == 0)
         {
             startPos = new Vector2Int((int)transform.position.x, (int)transform.position.y);
             targetPos = new Vector2Int((int)target.nextPos.x, (int)target.nextPos.y);
@@ -63,18 +43,18 @@ public class AStarMoving : MonoBehaviour
             Vector2 nextPos = new Vector2(FinalNodeList[1].x, FinalNodeList[1].y);
             if (nextPos == targetPos)
             {
-                target.TakeDamage(monster.damage);
+                target.TakeDamage(damage);
             }
             else
             {
                 Jump(nextPos);
             }
 
-            monster.actionCount = monster.originCount;
+            actionCount = originCount;
         }
         else
         {
-            monster.actionCount--;
+            actionCount--;
         }
     }
 

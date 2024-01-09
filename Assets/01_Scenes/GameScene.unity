@@ -968,9 +968,8 @@ GameObject:
   - component: {fileID: 580407175}
   - component: {fileID: 580407176}
   - component: {fileID: 580407174}
-  - component: {fileID: 580407177}
   m_Layer: 6
-  m_Name: Monster
+  m_Name: Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1017,26 +1016,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 580407173}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 500d46a53a758ff469983c33ca71caf8, type: 3}
+  m_Script: {fileID: 11500000, guid: 7917702deab2bf94492e6cb9976fa6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentHp: 0
   maxHp: 2
   damage: 1
-  actionCount: 0
+  type: 0
+  actionCount: 1
   originCount: 1
---- !u!114 &580407177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 580407173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5674ed4e970073e4c91368f655cf4949, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   bottomLeft: {x: -100, y: -100}
   topRight: {x: 100, y: 100}
   startPos: {x: 0, y: 0}
@@ -1426,10 +1414,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 789510082}
-  - component: {fileID: 789510081}
-  - component: {fileID: 789510080}
-  - component: {fileID: 789510079}
   - component: {fileID: 789510083}
+  - component: {fileID: 789510080}
   m_Layer: 6
   m_Name: Bat
   m_TagString: Untagged
@@ -1437,28 +1423,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &789510079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 789510078}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5674ed4e970073e4c91368f655cf4949, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bottomLeft: {x: -100, y: -100}
-  topRight: {x: 100, y: 100}
-  startPos: {x: 0, y: 0}
-  targetPos: {x: 0, y: 0}
-  FinalNodeList: []
-  maxHeight: 0.3
-  jumpingDuration: 0.1
-  jumpStartPos: {x: 0, y: 0, z: 0}
-  jumpTargetPos: {x: 0, y: 0, z: 0}
-  currentTime: 0
 --- !u!70 &789510080
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1475,23 +1439,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
---- !u!114 &789510081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 789510078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 500d46a53a758ff469983c33ca71caf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHp: 0
-  maxHp: 1
-  damage: 1
-  actionCount: 0
-  originCount: 0
 --- !u!4 &789510082
 Transform:
   m_ObjectHideFlags: 0
@@ -1520,6 +1467,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01401ae2bf53f94b96fc76e03edf383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHp: 0
+  maxHp: 1
+  damage: 1
+  type: 2
+  actionCount: 0
+  originCount: 1
   startPos: {x: 0, y: 0}
   targetPos: {x: 0, y: 0}
   slidingDuration: 0.1
@@ -4858,6 +4811,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1155909926}
   - component: {fileID: 1155909927}
+  - component: {fileID: 1155909928}
   m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
@@ -4921,7 +4875,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 318153866, guid: cd462f07f38577b4aae7ce653ba6b440, type: 3}
+  m_Sprite: {fileID: -998533148, guid: de1c65e4c5206be4d9b9a1b87a631c78, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4932,6 +4886,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1155909928
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155909925}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b20eccef198f4834c9f431aacadbfc61, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1185220883
 GameObject:
   m_ObjectHideFlags: 0
@@ -5169,9 +5144,9 @@ MonoBehaviour:
   monsterIsMove: 0
   noteManager: {fileID: 1185220885}
   tilemapRenderer: {fileID: 0}
-  aStarMovings:
-  - {fileID: 580407177}
-  slideMovings:
+  skeletons:
+  - {fileID: 580407176}
+  bats:
   - {fileID: 789510083}
 --- !u!4 &1424850915
 Transform:

@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
     public TilemapRenderer tilemapRenderer;
     
     // 스폰 시 리스트에 추가
-    public List<AStarMoving> aStarMovings = new List<AStarMoving>();
-    public List<BatMove> slideMovings = new List<BatMove>();
+    public List<Skeleton> skeletons = new List<Skeleton>();
+    public List<Bat> bats = new List<Bat>();
 
     private void Awake()
     {
@@ -50,14 +50,14 @@ public class GameManager : MonoBehaviour
 
             if(!isMove)
             {
-                foreach (var aStar in aStarMovings)
+                foreach (var skeleton in skeletons)
                 {
-                    aStar.Move();
+                    skeleton.Move();
                 }
 
-                foreach (var slide in slideMovings)
+                foreach (var bat in bats)
                 {
-                    slide.Move();
+                    bat.Move();
                 }
 
                 tilemapRenderer.enabled = !tilemapRenderer.enabled;
@@ -71,14 +71,14 @@ public class GameManager : MonoBehaviour
 
     public void playerMove()
     {
-        foreach (var aStar in aStarMovings)
+        foreach (var skeleton in skeletons)
         {
-            aStar.Move();
+            skeleton.Move();
         }
 
-        foreach (var slide in slideMovings)
+        foreach (var bat in bats)
         {
-            slide.Move();
+            bat.Move();
         }
 
         tilemapRenderer.enabled = !tilemapRenderer.enabled;

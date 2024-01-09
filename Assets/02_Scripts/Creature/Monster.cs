@@ -5,15 +5,15 @@ using UnityEngine;
 
 public enum Type
 {
-    AstarMove,
-    SlideMove,
-    BatMove
+    Skeleton,
+    Dragon,
+    Bat
 }
 
 public class Monster : MonoBehaviour
 {
-    [SerializeField] int currentHp = 0;
-    [SerializeField] int maxHp = 2;
+    public int currentHp;
+    public int maxHp;
 
     public int damage;
     public Type type;
@@ -37,18 +37,18 @@ public class Monster : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         GameManager.Instance.player.currentCoinPoint++;
         GameManager.Instance.player.CheckMultiPoint();
 
-        if (type == Type.AstarMove)
+        if (type == Type.Skeleton)
         {
-            GameManager.Instance.aStarMovings.Remove(gameObject.GetComponent<AStarMoving>());
+            GameManager.Instance.skeletons.Remove(gameObject.GetComponent<Skeleton>());
         }
-        else if (type == Type.BatMove)
+        else if (type == Type.Bat)
         {
-            GameManager.Instance.slideMovings.Remove(gameObject.GetComponent<BatMove>());
+            GameManager.Instance.bats.Remove(gameObject.GetComponent<Bat>());
         }
         Destroy(gameObject);
     }

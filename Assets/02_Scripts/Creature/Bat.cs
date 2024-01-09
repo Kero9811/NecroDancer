@@ -5,7 +5,7 @@ using System.Threading;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class BatMove : MonoBehaviour
+public class Bat : Monster
 {
     public Vector2Int startPos, targetPos;
     [SerializeField] float slidingDuration;
