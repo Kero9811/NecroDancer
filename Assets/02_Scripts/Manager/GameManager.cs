@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     
     // 스폰 시 리스트에 추가
     public List<AStarMoving> aStarMovings = new List<AStarMoving>();
-    public List<SlideMoving> slideMovings = new List<SlideMoving>();
+    public List<BatMove> slideMovings = new List<BatMove>();
 
     private void Awake()
     {
@@ -75,6 +75,12 @@ public class GameManager : MonoBehaviour
         {
             aStar.Move();
         }
+
+        foreach (var slide in slideMovings)
+        {
+            slide.Move();
+        }
+
         tilemapRenderer.enabled = !tilemapRenderer.enabled;
 
         isMove = true;

@@ -92,7 +92,11 @@ public class AStarMoving : MonoBehaviour
             {
                 bool isWall = false;
                 foreach (Collider2D col in Physics2D.OverlapCircleAll(new Vector2(i + bottomLeft.x, j + bottomLeft.y), 0.4f))
-                    if (col.gameObject.layer == LayerMask.NameToLayer("Contactable")) isWall = true;
+                    if (col.gameObject.layer == LayerMask.NameToLayer("Enemy") ||
+                        col.gameObject.layer == LayerMask.NameToLayer("Wall"))
+                    {
+                        isWall = true;
+                    }
 
                 NodeArray[i, j] = new Node(isWall, i + bottomLeft.x, j + bottomLeft.y);
             }

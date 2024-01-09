@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     private bool refuseInput;
 
     public LayerMask targetLayer;
+    public LayerMask wallLayer;
 
     private void Awake()
     {
@@ -59,10 +60,17 @@ public class Player : MonoBehaviour
                 if (!refuseInput)
                 {
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 1, targetLayer);
+                    RaycastHit2D hit2 = Physics2D.Raycast(transform.position, Vector2.up, 1, wallLayer);
 
                     if (hit.collider != null)
                     {
-                        Attack(hit.collider, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z));
+                        Attack(hit.collider);
+                        return;
+                    }
+
+                    if (hit2.collider != null)
+                    {
+                        DigWall(hit2.collider, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z));
                         return;
                     }
 
@@ -84,10 +92,17 @@ public class Player : MonoBehaviour
                 if (!refuseInput)
                 {
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1, targetLayer);
+                    RaycastHit2D hit2 = Physics2D.Raycast(transform.position, Vector2.down, 1, wallLayer);
 
                     if (hit.collider != null)
                     {
-                        Attack(hit.collider, new Vector3(transform.position.x, transform.position.y - 1, transform.position.z));
+                        Attack(hit.collider);
+                        return;
+                    }
+
+                    if (hit2.collider != null)
+                    {
+                        DigWall(hit2.collider, new Vector3(transform.position.x, transform.position.y - 1, transform.position.z));
                         return;
                     }
 
@@ -112,10 +127,17 @@ public class Player : MonoBehaviour
                 if (!refuseInput)
                 {
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, 1, targetLayer);
+                    RaycastHit2D hit2 = Physics2D.Raycast(transform.position, Vector2.left, 1, wallLayer);
 
                     if (hit.collider != null)
                     {
-                        Attack(hit.collider, new Vector3(transform.position.x - 1, transform.position.y, transform.position.z));
+                        Attack(hit.collider);
+                        return;
+                    }
+
+                    if (hit2.collider != null)
+                    {
+                        DigWall(hit2.collider, new Vector3(transform.position.x - 1, transform.position.y, transform.position.z));
                         return;
                     }
 
@@ -140,10 +162,17 @@ public class Player : MonoBehaviour
                 if (!refuseInput)
                 {
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, 1, targetLayer);
+                    RaycastHit2D hit2 = Physics2D.Raycast(transform.position, Vector2.right, 1, wallLayer);
 
                     if (hit.collider != null)
                     {
-                        Attack(hit.collider, new Vector3(transform.position.x + 1, transform.position.y, transform.position.z));
+                        Attack(hit.collider);
+                        return;
+                    }
+
+                    if (hit2.collider != null)
+                    {
+                        DigWall(hit2.collider, new Vector3(transform.position.x + 1, transform.position.y, transform.position.z));
                         return;
                     }
 
@@ -173,25 +202,25 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Attack(Collider2D collider, Vector3 wallPos)
+    private void Attack(Collider2D collider)
     {
         GameManager.Instance.shakeCamera.StartShake();
-        if (collider.tag == "Wall")
-        {
-            if (collider.TryGetComponent(out Tilemap tileMap))
-            {
-                Vector3Int cellPos = tileMap.WorldToCell(wallPos);
-                tileMap.SetTile(cellPos, null);
-            }
-        }
-        else if (collider.TryGetComponent(out Monster monster))
+        if (collider.TryGetComponent(out Monster monster))
         {
             monster.TakeDamage(damage);
         }
-        else
+        else { return; }
+    }
+
+    private void DigWall(Collider2D collider, Vector3 wallPos)
+    {
+        GameManager.Instance.shakeCamera.StartShake();
+        if (collider.TryGetComponent(out Tilemap tileMap))
         {
-            return;
+            Vector3Int cellPos = tileMap.WorldToCell(wallPos);
+            tileMap.SetTile(cellPos, null);
         }
+        else { return; }
     }
 
     public void TakeDamage(int damage)

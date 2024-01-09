@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class SlideMoving : MonoBehaviour
+public class BatMove : MonoBehaviour
 {
     public Vector2Int startPos, targetPos;
     [SerializeField] float slidingDuration;
@@ -16,6 +17,7 @@ public class SlideMoving : MonoBehaviour
 
     Vector2 myPos;
     public LayerMask targetLayer;
+    public LayerMask wallLayer;
 
     private void Start()
     {
@@ -49,20 +51,25 @@ public class SlideMoving : MonoBehaviour
                     myDir = Vector2.down;
                     break;
             }
-            print(myDir);
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, myDir, 1, targetLayer);
-            Debug.DrawRay(transform.position, myDir, Color.red);
+            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, myDir, 1, targetLayer);
+            RaycastHit2D hit2 = Physics2D.Raycast(transform.position, myDir, 1, wallLayer);
 
-            if (hit.collider != null)
+            if (hit2.collider != null)
             {
-                monster.actionCount = monster.originCount;
-                print(hit.collider.name);
+                print("isWall");
+                return;
+            }
+            else if (hit.Length >= 2)
+            {
+                print("isMonster");
+                return;
             }
             else
             {
                 Slide(myPos);
-                monster.actionCount = monster.originCount;
             }
+
+            monster.actionCount = monster.originCount;
         }
         else
         {

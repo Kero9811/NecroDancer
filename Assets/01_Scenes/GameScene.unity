@@ -235,7 +235,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -40.00006, y: -38}
+  m_AnchoredPosition: {x: -40.000122, y: -38}
   m_SizeDelta: {x: 80, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &379979311
@@ -392,7 +392,7 @@ Transform:
   - {fileID: 1526870444}
   - {fileID: 876204531}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &462828471
 GameObject:
@@ -1308,7 +1308,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 1299160468, guid: b0ce66d6c8cc468468cf056cc5524823, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1431,7 +1431,7 @@ GameObject:
   - component: {fileID: 789510079}
   - component: {fileID: 789510083}
   m_Layer: 6
-  m_Name: Monster (1)
+  m_Name: Bat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1500,13 +1500,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789510078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 10, z: 0}
+  m_LocalPosition: {x: -5, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1026267393}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &789510083
 MonoBehaviour:
@@ -1529,6 +1529,9 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &802260572
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,6 +1599,9 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!70 &802260575
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1669,7 +1675,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -40.00006, y: -75}
+  m_AnchoredPosition: {x: -40.000122, y: -75}
   m_SizeDelta: {x: 80, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &805422839
@@ -1793,7 +1799,7 @@ GameObject:
   - component: {fileID: 876204533}
   - component: {fileID: 876204532}
   - component: {fileID: 876204534}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -4708,6 +4714,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1026267393}
   - component: {fileID: 1026267394}
+  - component: {fileID: 1026267395}
   m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
@@ -4771,7 +4778,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 1828161072, guid: c385b1bda4df4b9498952a3b6e916c73, type: 3}
+  m_Sprite: {fileID: -2138256873, guid: 50be18d95726171459d185e1715c0c22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4782,6 +4789,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1026267395
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026267392}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2ae8447563eb84947996eafe6d37fcf5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1150965153
 GameObject:
   m_ObjectHideFlags: 0
@@ -5085,7 +5113,7 @@ Transform:
   m_Children:
   - {fileID: 650279392}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &1389006061
 CircleCollider2D:
@@ -5141,7 +5169,8 @@ MonoBehaviour:
   monsterIsMove: 0
   noteManager: {fileID: 1185220885}
   tilemapRenderer: {fileID: 0}
-  aStarMovings: []
+  aStarMovings:
+  - {fileID: 580407177}
   slideMovings:
   - {fileID: 789510083}
 --- !u!4 &1424850915
@@ -7411,7 +7440,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1978767974
 GameObject:
