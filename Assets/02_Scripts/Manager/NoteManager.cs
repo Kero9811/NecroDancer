@@ -25,56 +25,8 @@ public class NoteManager : MonoBehaviour
         noteBpm = GameManager.Instance.bpm;
     }
 
-    //private void Update()
-    //{
-    //    currentTime += Time.deltaTime;
-
-    //    if (currentTime >= 60d / noteBpm)
-    //    {
-    //        GameObject leftNote = Instantiate(notePrefab, leftNoteSpawnTf.position, Quaternion.identity);
-    //        GameObject rightNote = Instantiate(notePrefab, rightNoteSpawnTf.position, Quaternion.identity);
-
-    //        rightNote.GetComponent<Note>().isRight = true;
-
-    //        leftNote.transform.SetParent(transform);
-    //        rightNote.transform.SetParent(transform);
-
-    //        timingManager.boxNoteList.Add(leftNote);
-    //        timingManager.boxNoteList.Add(rightNote);
-
-    //        leftNote.transform.localScale = originScale;
-    //        rightNote.transform.localScale = originScale;
-
-    //        heart.SetAsLastSibling();
-
-    //        currentTime -= 60d / noteBpm;
-    //    }
-    //}
-
-    //public void NoteSpawn()
-    //{
-    //    GameObject leftNote = Instantiate(notePrefab, leftNoteSpawnTf.position, Quaternion.identity);
-    //    GameObject rightNote = Instantiate(notePrefab, rightNoteSpawnTf.position, Quaternion.identity);
-
-    //    rightNote.GetComponent<Note>().isRight = true;
-
-    //    leftNote.transform.SetParent(transform);
-    //    rightNote.transform.SetParent(transform);
-
-    //    timingManager.boxNoteList.Add(leftNote);
-    //    timingManager.boxNoteList.Add(rightNote);
-
-    //    leftNote.transform.localScale = originScale;
-    //    rightNote.transform.localScale = originScale;
-
-    //    heart.SetAsLastSibling();
-    //}
-
     public void NoteSpawn()
     {
-        //GameObject leftNote = Instantiate(notePrefab, leftNoteSpawnTf.position, Quaternion.identity);
-        //GameObject rightNote = Instantiate(notePrefab, rightNoteSpawnTf.position, Quaternion.identity);
-
         GameObject leftNote = GameManager.Instance.pool.Get(0);
         GameObject rightNote = GameManager.Instance.pool.Get(0);
 
@@ -97,9 +49,4 @@ public class NoteManager : MonoBehaviour
 
         heart.SetAsLastSibling();
     }
-
-
-    //Transform bullet = GameManager.Instance.pool.Get(3).transform;
-    //bullet.position = transform.position;
-    //bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
 }

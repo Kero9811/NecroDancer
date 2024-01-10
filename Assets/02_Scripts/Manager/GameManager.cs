@@ -67,6 +67,8 @@ public class GameManager : MonoBehaviour
                     dragon.Move();
                 }
 
+                player.isMiss = true;
+
                 tilemapRenderer.enabled = !tilemapRenderer.enabled;
             }
 

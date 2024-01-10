@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
     Vector2Int topRight;
     Node[,] NodeArray;
     bool isAttack;
+    public bool isMiss;
 
     private void Awake()
     {
@@ -63,6 +64,13 @@ public class Player : MonoBehaviour
     {
         if (Time.time - lastInputTime >= inputCoolTime)
         {
+            if (isMiss)
+            {
+                lastInputTime = Time.time - .15f;
+                isMiss = false;
+                return;
+            }
+
             if (Input.GetKeyDown(KeyCode.UpArrow) && !isMoving)
             {
                 GameManager.Instance.timingManager.CheckTiming();
@@ -73,15 +81,6 @@ public class Player : MonoBehaviour
 
                 if (!refuseInput)
                 {
-                    bottomLeft = new Vector2Int((int)nextPos.x - (verticalRange / 2), (int)nextPos.y);
-                    topRight = new Vector2Int((int)nextPos.x + (verticalRange / 2), (int)nextPos.y + (horizontalRange / 2));
-                    RangeAttack(bottomLeft, topRight);
-                    if (isAttack)
-                    {
-                        isAttack = false;
-                        return;
-                    }
-
                     RaycastHit2D wall = Physics2D.Raycast(transform.position, Vector2.up, 1, wallLayer);
 
                     if (wall.collider != null)
@@ -90,7 +89,16 @@ public class Player : MonoBehaviour
                         return;
                     }
 
-                    
+                    bottomLeft = new Vector2Int((int)nextPos.x - (verticalRange / 2), (int)nextPos.y);
+                    topRight = new Vector2Int((int)nextPos.x + (verticalRange / 2), (int)nextPos.y + (horizontalRange / 2));
+
+                    RangeAttack(bottomLeft, topRight);
+                    if (isAttack)
+                    {
+                        isAttack = false;
+                        return;
+                    }
+
                     Jump(nextPos);
                     this.nextPos = nextPos;
                     GameManager.Instance.playerMove();
@@ -109,20 +117,21 @@ public class Player : MonoBehaviour
 
                 if (!refuseInput)
                 {
-                    bottomLeft = new Vector2Int((int)nextPos.x - (verticalRange / 2), (int)nextPos.y - (horizontalRange / 2));
-                    topRight = new Vector2Int((int)nextPos.x + (verticalRange / 2), (int)nextPos.y);
-                    RangeAttack(bottomLeft, topRight);
-                    if (isAttack)
-                    {
-                        isAttack = false;
-                        return;
-                    }
-
                     RaycastHit2D wall = Physics2D.Raycast(transform.position, Vector2.down, 1, wallLayer);
 
                     if (wall.collider != null)
                     {
                         DigWall(wall.collider, new Vector3(transform.position.x, transform.position.y - 1, transform.position.z));
+                        return;
+                    }
+
+                    bottomLeft = new Vector2Int((int)nextPos.x - (verticalRange / 2), (int)nextPos.y - (horizontalRange / 2));
+                    topRight = new Vector2Int((int)nextPos.x + (verticalRange / 2), (int)nextPos.y);
+
+                    RangeAttack(bottomLeft, topRight);
+                    if (isAttack)
+                    {
+                        isAttack = false;
                         return;
                     }
 
@@ -147,6 +156,13 @@ public class Player : MonoBehaviour
 
                 if (!refuseInput)
                 {
+                    RaycastHit2D wall = Physics2D.Raycast(transform.position, Vector2.left, 1, wallLayer);
+
+                    if (wall.collider != null)
+                    {
+                        DigWall(wall.collider, new Vector3(transform.position.x - 1, transform.position.y, transform.position.z));
+                        return;
+                    }
                     bottomLeft = new Vector2Int((int)nextPos.x - (horizontalRange / 2), (int)nextPos.y - (verticalRange / 2));
                     topRight = new Vector2Int((int)nextPos.x, (int)nextPos.y + (verticalRange / 2));
 
@@ -154,14 +170,6 @@ public class Player : MonoBehaviour
                     if (isAttack)
                     {
                         isAttack = false;
-                        return;
-                    }
-
-                    RaycastHit2D wall = Physics2D.Raycast(transform.position, Vector2.left, 1, wallLayer);
-
-                    if (wall.collider != null)
-                    {
-                        DigWall(wall.collider, new Vector3(transform.position.x - 1, transform.position.y, transform.position.z));
                         return;
                     }
 
@@ -186,20 +194,21 @@ public class Player : MonoBehaviour
 
                 if (!refuseInput)
                 {
-                    bottomLeft = new Vector2Int((int)nextPos.x, (int)nextPos.y - (verticalRange / 2));
-                    topRight = new Vector2Int((int)nextPos.x + (horizontalRange / 2), (int)nextPos.y + (verticalRange / 2));
-                    RangeAttack(bottomLeft, topRight);
-                    if (isAttack)
-                    {
-                        isAttack = false;
-                        return;
-                    }
-
                     RaycastHit2D wall = Physics2D.Raycast(transform.position, Vector2.right, 1, wallLayer);
 
                     if (wall.collider != null)
                     {
                         DigWall(wall.collider, new Vector3(transform.position.x + 1, transform.position.y, transform.position.z));
+                        return;
+                    }
+
+                    bottomLeft = new Vector2Int((int)nextPos.x, (int)nextPos.y - (verticalRange / 2));
+                    topRight = new Vector2Int((int)nextPos.x + (horizontalRange / 2), (int)nextPos.y + (verticalRange / 2));
+
+                    RangeAttack(bottomLeft, topRight);
+                    if (isAttack)
+                    {
+                        isAttack = false;
                         return;
                     }
 
@@ -211,10 +220,9 @@ public class Player : MonoBehaviour
 
                 refuseInput = false;
             }
-            else {  return; }
+            else { return; }
         }
     }
-
     private void CheckRhythm()
     {
         if (!isCorrect || GameManager.Instance.monsterIsMove)
@@ -242,17 +250,6 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-    //private void Attack(Collider2D collider)
-    //{
-    //    GameManager.Instance.shakeCamera.StartShake();
-
-    //    if (collider.TryGetComponent(out Monster monster))
-    //    {
-    //        monster.TakeDamage(damage);
-    //    }
-    //    else { return; }
-    //}
 
     private void DigWall(Collider2D collider, Vector3 wallPos)
     {

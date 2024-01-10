@@ -1,26 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Whip : Weapon
 {
     WeaponType weaponType = WeaponType.Whip;
+    WeaponUI weaponUI;
+    SpriteRenderer spriteRenderer;
+    int originDmg;
+    int originHorizon;
+    int originVertical;
+    [SerializeField] WeaponType originType;
+
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     private void Start()
     {
         damage = 1;
         horizontalRange = 1;
         verticalRange = 5;
+        originDmg = damage;
+        originHorizon = horizontalRange;
+        originVertical = verticalRange;
+        originType = weaponType;
+        weaponUI = FindObjectOfType<WeaponUI>();
     }
 
     public override void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent(out Player player))
         {
-            player.damage = damage;
-            player.horizontalRange = horizontalRange;
-            player.verticalRange = verticalRange;
-            player.weaponType = weaponType;
+            ChanageInfor(player);
+            player.damage = originDmg;
+            player.horizontalRange = originHorizon;
+            player.verticalRange = originVertical;
+            player.weaponType = originType;
+            weaponUI.ChangeWeapon(originType);
         }
+    }
+
+    private void ChanageInfor(Player player)
+    {
+        originDmg = damage;
+        originHorizon = horizontalRange;
+        originVertical = verticalRange;
+        originType = weaponType;
+        damage = player.damage;
+        horizontalRange = player.horizontalRange;
+        verticalRange = player.verticalRange;
+        weaponType = player.weaponType;
+        spriteRenderer.sprite = weaponUI.sprites[(int)player.weaponType];
     }
 }
