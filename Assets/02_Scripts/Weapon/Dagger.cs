@@ -3,27 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Sword : Weapon
+public class Dagger : Weapon
 {
-    WeaponType weaponType = WeaponType.Sword;
+    WeaponType weaponType = WeaponType.Dagger;
     WeaponUI weaponUI;
     SpriteRenderer spriteRenderer;
     int originDmg;
     int originHorizon;
     int originVertical;
-    [SerializeField] WeaponType originType;
+    WeaponType originType;
 
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Start()
     {
         damage = 1;
         horizontalRange = 1;
-        verticalRange = 3;
+        verticalRange = 1;
         originDmg = damage;
         originHorizon = horizontalRange;
         originVertical = verticalRange;

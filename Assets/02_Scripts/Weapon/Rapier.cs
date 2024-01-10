@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Dagger : Weapon
+public class Rapier : Weapon
 {
-    WeaponType weaponType = WeaponType.Dagger;
+    [SerializeField] WeaponType weaponType = WeaponType.Rapier;
     WeaponUI weaponUI;
     SpriteRenderer spriteRenderer;
     int originDmg;
     int originHorizon;
     int originVertical;
-    WeaponType originType;
+    [SerializeField] WeaponType originType;
 
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Start()
     {
         damage = 1;
-        horizontalRange = 1;
+        horizontalRange = 2;
         verticalRange = 1;
         originDmg = damage;
         originHorizon = horizontalRange;

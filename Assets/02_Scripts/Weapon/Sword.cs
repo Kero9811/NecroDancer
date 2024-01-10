@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Rapier : Weapon
+public class Sword : Weapon
 {
-    [SerializeField] WeaponType weaponType = WeaponType.Rapier;
+    WeaponType weaponType = WeaponType.Sword;
     WeaponUI weaponUI;
     SpriteRenderer spriteRenderer;
     int originDmg;
@@ -16,14 +16,14 @@ public class Rapier : Weapon
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Start()
     {
         damage = 1;
-        horizontalRange = 2;
-        verticalRange = 1;
+        horizontalRange = 1;
+        verticalRange = 3;
         originDmg = damage;
         originHorizon = horizontalRange;
         originVertical = verticalRange;
