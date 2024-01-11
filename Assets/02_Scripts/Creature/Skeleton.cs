@@ -44,7 +44,7 @@ public class Skeleton : Monster
         animator = GetComponentInChildren<Animator>();
     }
 
-    public void Move()  // 특수 액션에 들어가지 않았다면 실행, 들어갔다면 return
+    public void Move()
     {
         if (actionCount == 0)
         {

@@ -10,7 +10,7 @@ public enum WeaponType
     Rapier
 }
 
-public class Weapon : MonoBehaviour
+public class Weapon : Item
 {
     public int damage;
     public int horizontalRange;

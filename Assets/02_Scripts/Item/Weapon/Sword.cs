@@ -1,46 +1,67 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Rapier : Weapon
+public class Sword : Weapon
 {
-    [SerializeField] WeaponType weaponType = WeaponType.Rapier;
+    WeaponType weaponType = WeaponType.Sword;
     WeaponUI weaponUI;
     SpriteRenderer spriteRenderer;
     int originDmg;
     int originHorizon;
     int originVertical;
     [SerializeField] WeaponType originType;
+    TextMeshProUGUI text;
 
 
     private void Awake()
     {
+        text = GetComponentInChildren<TextMeshProUGUI>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Start()
     {
         damage = 1;
-        horizontalRange = 2;
-        verticalRange = 1;
+        horizontalRange = 1;
+        verticalRange = 3;
+        price = 40;
         originDmg = damage;
         originHorizon = horizontalRange;
         originVertical = verticalRange;
         originType = weaponType;
         weaponUI = FindObjectOfType<WeaponUI>();
+        text.text = price.ToString();
     }
 
     public override void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent(out Player player))
         {
-            ChanageInfor(player);
-            player.damage = originDmg;
-            player.horizontalRange = originHorizon;
-            player.verticalRange = originVertical;
-            player.weaponType = originType;
-            weaponUI.ChangeWeapon(originType);
+            if (isUseable)
+            {
+                ChanageInfor(player);
+                player.damage = originDmg;
+                player.horizontalRange = originHorizon;
+                player.verticalRange = originVertical;
+                player.weaponType = originType;
+                weaponUI.ChangeWeapon(originType);
+            }
+            else if (player.coinAmount >= price)
+            {
+                player.coinAmount -= price;
+                ChanageInfor(player);
+                player.damage = originDmg;
+                player.horizontalRange = originHorizon;
+                player.verticalRange = originVertical;
+                player.weaponType = originType;
+                weaponUI.ChangeWeapon(originType);
+                isUseable = true;
+                text.enabled = false;
+            }
+            else { return; }
         }
     }
 

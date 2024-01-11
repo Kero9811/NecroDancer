@@ -44,7 +44,6 @@ public class Player : MonoBehaviour
 
     Vector2Int bottomLeft;
     Vector2Int topRight;
-    Node[,] NodeArray;
     bool isAttack;
     public bool isMiss;
 

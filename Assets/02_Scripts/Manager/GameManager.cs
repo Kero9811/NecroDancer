@@ -96,7 +96,6 @@ public class GameManager : MonoBehaviour
         }
 
         tilemapRenderer.enabled = !tilemapRenderer.enabled;
-
         isMove = true;
     }
 }

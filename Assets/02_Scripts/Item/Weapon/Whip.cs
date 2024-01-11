@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,10 +13,12 @@ public class Whip : Weapon
     int originHorizon;
     int originVertical;
     [SerializeField] WeaponType originType;
+    TextMeshProUGUI text;
 
 
     private void Awake()
     {
+        text = GetComponentInChildren<TextMeshProUGUI>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
@@ -24,23 +27,41 @@ public class Whip : Weapon
         damage = 1;
         horizontalRange = 1;
         verticalRange = 5;
+        price = 60;
         originDmg = damage;
         originHorizon = horizontalRange;
         originVertical = verticalRange;
         originType = weaponType;
         weaponUI = FindObjectOfType<WeaponUI>();
+        text.text = price.ToString();
     }
 
     public override void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent(out Player player))
         {
-            ChanageInfor(player);
-            player.damage = originDmg;
-            player.horizontalRange = originHorizon;
-            player.verticalRange = originVertical;
-            player.weaponType = originType;
-            weaponUI.ChangeWeapon(originType);
+            if (isUseable)
+            {
+                ChanageInfor(player);
+                player.damage = originDmg;
+                player.horizontalRange = originHorizon;
+                player.verticalRange = originVertical;
+                player.weaponType = originType;
+                weaponUI.ChangeWeapon(originType);
+            }
+            else if (player.coinAmount >= price)
+            {
+                player.coinAmount -= price;
+                ChanageInfor(player);
+                player.damage = originDmg;
+                player.horizontalRange = originHorizon;
+                player.verticalRange = originVertical;
+                player.weaponType = originType;
+                weaponUI.ChangeWeapon(originType);
+                isUseable = true;
+                text.enabled = false;
+            }
+            else { return; }
         }
     }
 
