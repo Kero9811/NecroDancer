@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class NoteManager : MonoBehaviour
 {
-    public int noteBpm = 0;
-
     [SerializeField]
     Transform leftNoteSpawnTf;
     [SerializeField]
@@ -22,7 +20,6 @@ public class NoteManager : MonoBehaviour
     {
         originScale = notePrefab.transform.localScale;
         timingManager = GetComponent<TimingManager>();
-        noteBpm = GameManager.Instance.bpm;
     }
 
     public void NoteSpawn()

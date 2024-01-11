@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
             if (isMiss)
             {
                 print("miss");
-                lastInputTime = Time.time;
+                lastInputTime = Time.time -.1f;
                 isMiss = false;
                 return;
             }

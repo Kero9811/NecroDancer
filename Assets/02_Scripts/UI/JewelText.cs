@@ -20,6 +20,7 @@ public class JewelText : MonoBehaviour
 
     private void Update()
     {
+        jewelText = GameManager.Instance.player.jewelAmount;
         text.text = $"x {jewelText}";
     }
 }

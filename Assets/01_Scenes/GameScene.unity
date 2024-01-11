@@ -8527,7 +8527,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3759f5a4950984a8b10011c9d4bd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteBpm: 0
   leftNoteSpawnTf: {fileID: 620885082}
   rightNoteSpawnTf: {fileID: 999683053}
   notePrefab: {fileID: 1758547047430727551, guid: 98bc4fc459f4e384ebe3b50c43a14d09, type: 3}
@@ -8706,15 +8705,17 @@ MonoBehaviour:
   player: {fileID: 802260574}
   timingManager: {fileID: 1185220886}
   pool: {fileID: 1960069194}
-  bpm: 115
   isMove: 0
   monsterIsMove: 0
   noteManager: {fileID: 1185220885}
   tilemapRenderer: {fileID: 0}
   controlHpUI: {fileID: 367048176}
-  skeletons: []
-  bats: []
-  dragons: []
+  skeletons:
+  - {fileID: 580407176}
+  bats:
+  - {fileID: 789510083}
+  dragons:
+  - {fileID: 2032982784}
   _bpm: 115
   _audioSource: {fileID: 1424850916}
   _intervals:
@@ -8724,7 +8725,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1424850914}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-          m_MethodName: Test
+          m_MethodName: UpdateOnBPM
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

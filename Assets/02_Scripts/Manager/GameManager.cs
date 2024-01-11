@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour
     public Player player;
     public TimingManager timingManager;
     public ObjectPoolManager pool;
-    public int bpm = 0;
-    private double currentTime = 0d;
+    //public int bpm = 0;
+    //private double currentTime = 0d;
     public bool isMove;
     public bool monsterIsMove;
 
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void Test()
+    public void UpdateOnBPM()
     {
         noteManager.NoteSpawn();
 
