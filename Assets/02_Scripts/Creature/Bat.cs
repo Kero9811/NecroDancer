@@ -83,7 +83,7 @@ public class Bat : Monster
 
     public void Slide(Vector3 targetPos)
     {
-        GameManager.Instance.monsterIsMove = true;
+        //GameManager.Instance.monsterIsMove = true;
         slideStartPos = transform.position;
         slideTargetPos = targetPos;
 
@@ -106,6 +106,6 @@ public class Bat : Monster
         }
 
         transform.position = slideTargetPos;
-        GameManager.Instance.monsterIsMove = false;
+        //GameManager.Instance.monsterIsMove = false;
     }
 }

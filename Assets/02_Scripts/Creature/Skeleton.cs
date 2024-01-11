@@ -170,7 +170,7 @@ public class Skeleton : Monster
 
     public void Jump(Vector3 targetPos)
     {
-        GameManager.Instance.monsterIsMove = true;
+        //GameManager.Instance.monsterIsMove = true;
         jumpStartPos = transform.position;
         jumpTargetPos = targetPos;
 
@@ -197,6 +197,6 @@ public class Skeleton : Monster
         }
 
         transform.position = jumpTargetPos;
-        GameManager.Instance.monsterIsMove = false;
+        //GameManager.Instance.monsterIsMove = false;
     }
 }

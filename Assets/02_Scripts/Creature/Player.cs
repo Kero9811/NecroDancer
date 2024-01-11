@@ -68,7 +68,8 @@ public class Player : MonoBehaviour
         {
             if (isMiss)
             {
-                lastInputTime = Time.time - .15f;
+                print("miss");
+                lastInputTime = Time.time;
                 isMiss = false;
                 return;
             }
@@ -280,7 +281,7 @@ public class Player : MonoBehaviour
     }
     private void CheckRhythm()
     {
-        if (!isCorrect || GameManager.Instance.monsterIsMove)
+        if (!isCorrect/* || GameManager.Instance.monsterIsMove*/)
         {
             GameManager.Instance.shakeCamera.StartShake(5f, .1f);
             currentCoinPoint = 1;
