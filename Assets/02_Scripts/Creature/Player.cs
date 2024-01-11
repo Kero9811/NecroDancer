@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public int currentHp;
     public int maxHp;
     public int damage;
+    public int digDamage;
     public int defense;
     public int currentCoinPoint = 1;
     [SerializeField] int maxCoinPoint = 4;
@@ -26,7 +27,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] float maxHeight;
     [SerializeField] float jumpingDuration;
-    [SerializeField] bool isMoving;
+    public bool isMoving;
     [SerializeField] Vector3 startPos;
     [SerializeField] Vector3 targetPos;
     public Vector2 nextPos;
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour
     private bool refuseInput;
 
     public WeaponType weaponType;
+    public ShovelGrade shovelGrade;
 
     public LayerMask targetLayer;
     public LayerMask wallLayer;
@@ -57,6 +59,7 @@ public class Player : MonoBehaviour
     {
         currentHp = maxHp;
         weaponType = WeaponType.Dagger;
+        shovelGrade = ShovelGrade.Iron;
     }
 
     private void Update()
@@ -84,8 +87,21 @@ public class Player : MonoBehaviour
 
                     if (wall.collider != null)
                     {
-                        DigWall(wall.collider, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z));
-                        return;
+                        if (wall.collider.TryGetComponent(out WallInfo wallInfo))
+                        {
+                            if (digDamage >= wallInfo.wallStrength)
+                            {
+                                DigWall(wall.collider, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z));
+                                return;
+                            }
+                            else
+                            {
+                                GameManager.Instance.shakeCamera.StartShake(5f, .1f);
+                                currentCoinPoint = 1;
+                                refuseInput = true;
+                                return;
+                            }
+                        }
                     }
 
                     bottomLeft = new Vector2Int((int)nextPos.x - (verticalRange / 2), (int)nextPos.y);
@@ -120,8 +136,21 @@ public class Player : MonoBehaviour
 
                     if (wall.collider != null)
                     {
-                        DigWall(wall.collider, new Vector3(transform.position.x, transform.position.y - 1, transform.position.z));
-                        return;
+                        if (wall.collider.TryGetComponent(out WallInfo wallInfo))
+                        {
+                            if (digDamage >= wallInfo.wallStrength)
+                            {
+                                DigWall(wall.collider, new Vector3(transform.position.x, transform.position.y - 1, transform.position.z));
+                                return;
+                            }
+                            else
+                            {
+                                GameManager.Instance.shakeCamera.StartShake(5f, .1f);
+                                currentCoinPoint = 1;
+                                refuseInput = true;
+                                return;
+                            }
+                        }
                     }
 
                     bottomLeft = new Vector2Int((int)nextPos.x - (verticalRange / 2), (int)nextPos.y - (horizontalRange / 2));
@@ -159,9 +188,23 @@ public class Player : MonoBehaviour
 
                     if (wall.collider != null)
                     {
-                        DigWall(wall.collider, new Vector3(transform.position.x - 1, transform.position.y, transform.position.z));
-                        return;
+                        if (wall.collider.TryGetComponent(out WallInfo wallInfo))
+                        {
+                            if (digDamage >= wallInfo.wallStrength)
+                            {
+                                DigWall(wall.collider, new Vector3(transform.position.x - 1, transform.position.y, transform.position.z));
+                                return;
+                            }
+                            else
+                            {
+                                GameManager.Instance.shakeCamera.StartShake(5f, .1f);
+                                currentCoinPoint = 1;
+                                refuseInput = true;
+                                return;
+                            }
+                        }
                     }
+
                     bottomLeft = new Vector2Int((int)nextPos.x - (horizontalRange / 2), (int)nextPos.y - (verticalRange / 2));
                     topRight = new Vector2Int((int)nextPos.x, (int)nextPos.y + (verticalRange / 2));
 
@@ -197,8 +240,21 @@ public class Player : MonoBehaviour
 
                     if (wall.collider != null)
                     {
-                        DigWall(wall.collider, new Vector3(transform.position.x + 1, transform.position.y, transform.position.z));
-                        return;
+                        if (wall.collider.TryGetComponent(out WallInfo wallInfo))
+                        {
+                            if (digDamage >= wallInfo.wallStrength)
+                            {
+                                DigWall(wall.collider, new Vector3(transform.position.x + 1, transform.position.y, transform.position.z));
+                                return;
+                            }
+                            else
+                            {
+                                GameManager.Instance.shakeCamera.StartShake(5f, .1f);
+                                currentCoinPoint = 1;
+                                refuseInput = true;
+                                return;
+                            }
+                        }
                     }
 
                     bottomLeft = new Vector2Int((int)nextPos.x, (int)nextPos.y - (verticalRange / 2));
@@ -226,7 +282,7 @@ public class Player : MonoBehaviour
     {
         if (!isCorrect || GameManager.Instance.monsterIsMove)
         {
-            GameManager.Instance.shakeCamera.StartShake();
+            GameManager.Instance.shakeCamera.StartShake(5f, .1f);
             currentCoinPoint = 1;
             refuseInput = true;
         }
@@ -252,7 +308,7 @@ public class Player : MonoBehaviour
 
     private void DigWall(Collider2D collider, Vector3 wallPos)
     {
-        GameManager.Instance.shakeCamera.StartShake();
+        GameManager.Instance.shakeCamera.StartShake(1f, .1f);
         if (collider.TryGetComponent(out Tilemap tileMap))
         {
             Vector3Int cellPos = tileMap.WorldToCell(wallPos);
@@ -263,7 +319,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        GameManager.Instance.shakeCamera.StartShake();
+        GameManager.Instance.shakeCamera.StartShake(5f, .1f);
 
         currentHp -= damage;
 

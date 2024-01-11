@@ -6,7 +6,7 @@ using UnityEngine;
 public class Dagger : Weapon
 {
     WeaponType weaponType = WeaponType.Dagger;
-    WeaponUI weaponUI;
+    [SerializeField] WeaponUI weaponUI;
     SpriteRenderer spriteRenderer;
     int originDmg;
     int originHorizon;
@@ -74,6 +74,6 @@ public class Dagger : Weapon
         horizontalRange = player.horizontalRange;
         verticalRange = player.verticalRange;
         weaponType = player.weaponType;
-        spriteRenderer.sprite = weaponUI.sprites[(int)player.weaponType];
+        spriteRenderer.sprite = weaponUI.weaponSprites[(int)player.weaponType];
     }
 }

@@ -75,6 +75,6 @@ public class Whip : Weapon
         horizontalRange = player.horizontalRange;
         verticalRange = player.verticalRange;
         weaponType = player.weaponType;
-        spriteRenderer.sprite = weaponUI.sprites[(int)player.weaponType];
+        spriteRenderer.sprite = weaponUI.weaponSprites[(int)player.weaponType];
     }
 }

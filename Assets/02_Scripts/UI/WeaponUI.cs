@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class WeaponUI : MonoBehaviour
 {
     Image image;
-    public List<Sprite> sprites;
+    public List<Sprite> weaponSprites;
+    //public List<Sprite> shovelSprites;
 
     private void Awake()
     {
@@ -15,6 +16,11 @@ public class WeaponUI : MonoBehaviour
 
     public void ChangeWeapon(WeaponType type)
     {
-        image.sprite = sprites[(int)type];
+        image.sprite = weaponSprites[(int)type];
     }
+
+    //public void ChangeShovel(ShovelGrade grade)
+    //{
+    //    image.sprite = shovelSprites[(int)grade];
+    //}
 }

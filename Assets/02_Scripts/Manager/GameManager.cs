@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public NoteManager noteManager;
     public TilemapRenderer tilemapRenderer;
     public ControlHpUI controlHpUI;
-    
+
     // 스폰 시 리스트에 추가
     public List<Skeleton> skeletons = new List<Skeleton>();
     public List<Bat> bats = new List<Bat>();
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        shakeCamera = Camera.main.GetComponent<CameraShake>();
+        shakeCamera = FindObjectOfType<CameraShake>();
         tilemapRenderer = GameObject.Find("Grid").transform.GetChild(0).GetComponent<TilemapRenderer>();
     }
 
