@@ -727,7 +727,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ed9d99b7149f2074a897da77237f4760, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2677,6 +2677,7 @@ GameObject:
   m_Component:
   - component: {fileID: 802260573}
   - component: {fileID: 802260574}
+  - component: {fileID: 802260577}
   - component: {fileID: 802260575}
   - component: {fileID: 802260576}
   m_Layer: 0
@@ -2783,6 +2784,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &802260577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802260572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0756582e97bbbb645a58bf776f3dda62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemaps:
+  - {fileID: 924340532}
+  - {fileID: 1526870446}
+  - {fileID: 1765256182}
+  - {fileID: 876204533}
+  - {fileID: 535438588}
+  targetTile: {fileID: 0}
+  originColors: []
 --- !u!1 &805422837
 GameObject:
   m_ObjectHideFlags: 0
