@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public int maxHp;
     public int damage;
     public int digDamage;
+    public int sightRange;
     public int defense;
     public int currentCoinPoint = 1;
     [SerializeField] int maxCoinPoint = 4;
@@ -281,7 +282,7 @@ public class Player : MonoBehaviour
     }
     private void CheckRhythm()
     {
-        if (!isCorrect/* || GameManager.Instance.monsterIsMove*/)
+        if (!isCorrect)
         {
             GameManager.Instance.shakeCamera.StartShake(5f, .1f);
             currentCoinPoint = 1;

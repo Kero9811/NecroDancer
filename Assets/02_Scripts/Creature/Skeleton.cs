@@ -59,15 +59,19 @@ public class Skeleton : Monster
             }
 
             Vector2 nextPos = new Vector2(FinalNodeList[1].x, FinalNodeList[1].y);
+            CheckNextPos(nextPos);
+
             if (nextPos == targetPos)
             {
                 target.TakeDamage(damage);
             }
-            else
+            else if (!isFull)
             {
+                GameManager.Instance.monstersNextPos.Add(nextPos);
                 Jump(nextPos);
             }
-
+            else { }
+            isFull = false;
             actionCount = originCount;
             animator.SetBool("ready", false);
         }
@@ -77,7 +81,6 @@ public class Skeleton : Monster
             animator.SetBool("ready", true);
         }
     }
-
 
     public void PathFinding()
     {
@@ -170,7 +173,6 @@ public class Skeleton : Monster
 
     public void Jump(Vector3 targetPos)
     {
-        //GameManager.Instance.monsterIsMove = true;
         jumpStartPos = transform.position;
         jumpTargetPos = targetPos;
 
@@ -197,6 +199,5 @@ public class Skeleton : Monster
         }
 
         transform.position = jumpTargetPos;
-        //GameManager.Instance.monsterIsMove = false;
     }
 }

@@ -7,7 +7,6 @@ public class WeaponUI : MonoBehaviour
 {
     Image image;
     public List<Sprite> weaponSprites;
-    //public List<Sprite> shovelSprites;
 
     private void Awake()
     {
@@ -18,9 +17,4 @@ public class WeaponUI : MonoBehaviour
     {
         image.sprite = weaponSprites[(int)type];
     }
-
-    //public void ChangeShovel(ShovelGrade grade)
-    //{
-    //    image.sprite = shovelSprites[(int)grade];
-    //}
 }

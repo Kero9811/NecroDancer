@@ -19,6 +19,7 @@ public abstract class Monster : MonoBehaviour
     public Type type;
     public int actionCount;
     public int originCount;
+    public bool isFull;
 
     private void Awake()
     {
@@ -55,5 +56,13 @@ public abstract class Monster : MonoBehaviour
             GameManager.Instance.dragons.Remove(gameObject.GetComponent<Dragon>());
         }
         Destroy(gameObject);
+    }
+
+    public void CheckNextPos(Vector2 nextPos)
+    {
+        if (GameManager.Instance.monstersNextPos.Contains(nextPos))
+        {
+            isFull = true;
+        }
     }
 }

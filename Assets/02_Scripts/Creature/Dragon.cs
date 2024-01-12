@@ -43,14 +43,19 @@ public class Dragon : Monster
             }
 
             Vector2 nextPos = new Vector2(FinalNodeList[1].x, FinalNodeList[1].y);
+            CheckNextPos(nextPos);
+
             if (nextPos == targetPos)
             {
                 target.TakeDamage(damage);
             }
-            else
+            else if (!isFull)
             {
+                GameManager.Instance.monstersNextPos.Add(nextPos);
                 Jump(nextPos);
             }
+            else { }
+            isFull = false;
 
             actionCount = originCount;
         }
@@ -163,7 +168,6 @@ public class Dragon : Monster
 
     public void Jump(Vector3 targetPos)
     {
-        //GameManager.Instance.monsterIsMove = true;
         jumpStartPos = transform.position;
         jumpTargetPos = targetPos;
 
@@ -190,6 +194,5 @@ public class Dragon : Monster
         }
 
         transform.position = jumpTargetPos;
-        //GameManager.Instance.monsterIsMove = false;
     }
 }
