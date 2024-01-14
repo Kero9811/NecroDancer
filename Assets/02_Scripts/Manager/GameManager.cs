@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     public List<Dragon> dragons = new List<Dragon>();
     public List<GreenSlime> greenSlimes = new List<GreenSlime>();
     public List<BlueSlime> blueSlimes = new List<BlueSlime>();
+    public List<GoldBat> goldBats = new List<GoldBat>();
+
 
     public List<Vector2> monstersNextPos = new List<Vector2>();
 
@@ -75,6 +77,11 @@ public class GameManager : MonoBehaviour
                 blueSlime.Move();
             }
 
+            foreach (var goldBat in goldBats)
+            {
+                goldBat.Move();
+            }
+
             player.isMiss = true;
             monstersNextPos.Clear();
             tilemapRenderer.enabled = !tilemapRenderer.enabled;
@@ -108,6 +115,11 @@ public class GameManager : MonoBehaviour
         foreach (var blueSlime in blueSlimes)
         {
             blueSlime.Move();
+        }
+
+        foreach (var goldBat in goldBats)
+        {
+            goldBat.Move();
         }
 
         monstersNextPos.Clear();

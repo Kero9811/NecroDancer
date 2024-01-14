@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     public int sightRange;
     public int defense;
     public int currentCoinPoint = 1;
+    public int killCount = 0;
     [SerializeField] int maxCoinPoint = 4;
     public int coinAmount;
     public int jewelAmount;
@@ -385,9 +386,14 @@ public class Player : MonoBehaviour
 
     internal void CheckMultiPoint()
     {
-        if (currentCoinPoint > maxCoinPoint)
+        if (killCount >= 3)
         {
-            currentCoinPoint = maxCoinPoint;
+            currentCoinPoint++;
+            killCount = 0;
+            if (currentCoinPoint > maxCoinPoint)
+            {
+                currentCoinPoint = maxCoinPoint;
+            }
         }
     }
 }

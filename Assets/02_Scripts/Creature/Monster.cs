@@ -10,7 +10,8 @@ public enum Type
     Bat,
     GreenSlime,
     BlueSlime,
-    GoldSlime
+    GoldSlime,
+    GoldBat
 }
 
 public class Monster : MonoBehaviour
@@ -44,7 +45,7 @@ public class Monster : MonoBehaviour
 
     public void Die()
     {
-        GameManager.Instance.player.currentCoinPoint++;
+        GameManager.Instance.player.killCount++;
         GameManager.Instance.player.CheckMultiPoint();
 
         switch (type)
@@ -63,6 +64,9 @@ public class Monster : MonoBehaviour
                 break;
             case Type.BlueSlime:
                 GameManager.Instance.blueSlimes.Remove(gameObject.GetComponent<BlueSlime>());
+                break;
+            case Type.GoldBat:
+                GameManager.Instance.goldBats.Remove(gameObject.GetComponent<GoldBat>());
                 break;
             default:
                 return;

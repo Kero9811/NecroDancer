@@ -7,20 +7,22 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Bat : Monster
 {
-    public Vector2Int startPos, targetPos;
+    public Vector2Int targetPos;
     [SerializeField] float slidingDuration;
     [SerializeField] Vector3 slideStartPos;
     [SerializeField] Vector3 slideTargetPos;
     public double currentTime = 0;
     Player target;
+    SpriteRenderer spriteRenderer;
 
     Vector2 myPos;
     public LayerMask targetLayer;
     public LayerMask wallLayer;
 
-    private void Start()
+    protected void Start()
     {
         target = FindObjectOfType<Player>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     public void Move()
@@ -51,10 +53,12 @@ public class Bat : Monster
 
                 if (randomDirection == Vector2.right)
                 {
+                    spriteRenderer.flipX = false;
                     myPos = new Vector2Int((int)transform.position.x + 1, (int)transform.position.y);
                 }
                 else if (randomDirection == Vector2.left)
                 {
+                    spriteRenderer.flipX = true;
                     myPos = new Vector2Int((int)transform.position.x - 1, (int)transform.position.y);
                 }
                 else if (randomDirection == Vector2.up)
