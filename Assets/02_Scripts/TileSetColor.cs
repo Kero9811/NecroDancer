@@ -12,16 +12,7 @@ public class TileSetColor : MonoBehaviour
     private void Awake()
     {
         tilemap = GetComponent<Tilemap>();
-    }
-
-    private void Start()
-    {
         TileColorChange();
-    }
-
-    private void Update()
-    {
-
     }
 
     private void TileColorChange()

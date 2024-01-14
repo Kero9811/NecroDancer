@@ -302,13 +302,10 @@ public class Player : MonoBehaviour
 
     public void RangeAttack(Vector2Int topRight, Vector2Int bottomLeft)
     {
-        // 주어진 범위에 있는 Collider2D 배열을 가져옴
         Collider2D[] colliders = Physics2D.OverlapAreaAll(bottomLeft, topRight);
 
-        // 가져온 각 Collider2D에 대해 처리
         foreach (Collider2D collider in colliders)
         {
-            // 해당 Collider2D가 monster 컴포넌트를 가지고 있는지 확인
             if (collider.TryGetComponent(out Monster monster))
             {
                 monster.TakeDamage(damage);

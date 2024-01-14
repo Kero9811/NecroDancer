@@ -70,8 +70,6 @@ public class Monster : MonoBehaviour
 
         GameObject money = GameManager.Instance.pool.Get(1);
         money.GetComponent<Money>().dropCoin = dropGold;
-        print(money.GetComponent<Money>().dropCoin);
-        print(dropGold);
         money.transform.position = transform.position;
 
         Destroy(gameObject);

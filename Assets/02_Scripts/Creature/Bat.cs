@@ -27,42 +27,47 @@ public class Bat : Monster
     {
         if (actionCount == 0)
         {
-            int dir = Random.Range(0, 4);
-            Vector2 myDir = Vector2.zero;
+            Vector2[] directions = {Vector2.right, Vector2.left, Vector2.up, Vector2.down};
+            bool isTrapped = true;
             targetPos = new Vector2Int((int)target.nextPos.x, (int)target.nextPos.y);
 
-            switch (dir)
+            foreach(var direction in directions)
             {
-                case 0:
-                    myPos = new Vector2Int((int)transform.position.x + 1, (int)transform.position.y);
-                    myDir = Vector2.right;
+                if (!IsBlockedInDirection(direction))
+                {
+                    isTrapped = false;
                     break;
-                case 1:
-                    myPos = new Vector2Int((int)transform.position.x - 1, (int)transform.position.y);
-                    myDir = Vector2.left;
-                    break;
-                case 2:
-                    myPos = new Vector2Int((int)transform.position.x, (int)transform.position.y + 1);
-                    myDir = Vector2.up;
-                    break;
-                case 3:
-                    myPos = new Vector2Int((int)transform.position.x, (int)transform.position.y - 1);
-                    myDir = Vector2.down;
-                    break;
+                }
             }
-            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, myDir, 1, targetLayer);
-            RaycastHit2D hit2 = Physics2D.Raycast(transform.position, myDir, 1, wallLayer);
 
-            if (hit2.collider != null)
+            if (!isTrapped)
             {
-                return;
-            }
-            else if (hit.Length >= 2)
-            {
-                return;
-            }
-            else
-            {
+                Vector2 randomDirection;
+
+                do
+                {
+                    randomDirection = directions[Random.Range(0, directions.Length)];
+                } while (IsBlockedInDirection(randomDirection));
+
+                if (randomDirection == Vector2.right)
+                {
+                    myPos = new Vector2Int((int)transform.position.x + 1, (int)transform.position.y);
+                }
+                else if (randomDirection == Vector2.left)
+                {
+                    myPos = new Vector2Int((int)transform.position.x - 1, (int)transform.position.y);
+                }
+                else if (randomDirection == Vector2.up)
+                {
+                    myPos = new Vector2Int((int)transform.position.x, (int)transform.position.y + 1);
+                }
+                else if (randomDirection == Vector2.down)
+                {
+                    myPos = new Vector2Int((int)transform.position.x, (int)transform.position.y - 1);
+                }
+                else { }
+
+
                 if (myPos == targetPos)
                 {
                     target.TakeDamage(damage);
@@ -79,6 +84,14 @@ public class Bat : Monster
         {
             actionCount--;
         }
+    }
+
+    private bool IsBlockedInDirection(Vector2 direction)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 1, wallLayer);
+        RaycastHit2D[] hit2 = Physics2D.RaycastAll(transform.position, direction, 1, targetLayer);
+
+        return hit.collider != null || hit2.Length >= 2;
     }
 
     public void Slide(Vector3 targetPos)

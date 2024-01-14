@@ -16,7 +16,7 @@ public class Money : MonoBehaviour
     {
         if (other.TryGetComponent(out Player player))
         {
-            player.coinAmount += dropCoin;
+            player.coinAmount += (dropCoin * player.currentCoinPoint);
             coinText.ChangeCoinUI();
             gameObject.SetActive(false);
         }
