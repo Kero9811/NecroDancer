@@ -50,10 +50,13 @@ public class Player : MonoBehaviour
     bool isAttack;
     public bool isMiss;
 
+    TileRGB tileRGB;
+
     private void Awake()
     {
         headRenderer = transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>();
         bodyRenderer = transform.GetChild(0).GetChild(1).GetComponent<SpriteRenderer>();
+        tileRGB = GetComponent<TileRGB>();
     }
 
     private void Start()
@@ -61,6 +64,8 @@ public class Player : MonoBehaviour
         currentHp = maxHp;
         weaponType = WeaponType.Dagger;
         shovelGrade = ShovelGrade.Iron;
+
+        tileRGB.ChangeTileColor();
     }
 
     private void Update()
@@ -117,6 +122,7 @@ public class Player : MonoBehaviour
                     }
 
                     Jump(nextPos);
+                    tileRGB.ChangeTileColor();
                     this.nextPos = nextPos;
                     GameManager.Instance.playerMove();
                     lastInputTime = Time.time;
@@ -166,6 +172,7 @@ public class Player : MonoBehaviour
                     }
 
                     Jump(nextPos);
+                    tileRGB.ChangeTileColor();
                     this.nextPos = nextPos;
                     GameManager.Instance.playerMove();
                     lastInputTime = Time.time;
@@ -218,6 +225,7 @@ public class Player : MonoBehaviour
                     }
 
                     Jump(nextPos);
+                    tileRGB.ChangeTileColor();
                     this.nextPos = nextPos;
                     GameManager.Instance.playerMove();
                     lastInputTime = Time.time;
@@ -270,6 +278,7 @@ public class Player : MonoBehaviour
                     }
 
                     Jump(nextPos);
+                    tileRGB.ChangeTileColor();
                     this.nextPos = nextPos;
                     GameManager.Instance.playerMove();
                     lastInputTime = Time.time;
