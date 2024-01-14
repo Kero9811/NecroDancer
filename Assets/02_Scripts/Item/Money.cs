@@ -5,12 +5,19 @@ using UnityEngine;
 public class Money : MonoBehaviour
 {
     public int dropCoin;
+    CoinText coinText;
+
+    private void Start()
+    {
+        coinText = FindObjectOfType<CoinText>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent(out Player player))
         {
             player.coinAmount += dropCoin;
+            coinText.ChangeCoinUI();
             gameObject.SetActive(false);
         }
     }

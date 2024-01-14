@@ -15,10 +15,9 @@ public class CoinText : MonoBehaviour
 
     private void Start()
     {
-        coinText = GameManager.Instance.player.coinAmount;
+        ChangeCoinUI();
     }
-
-    private void Update()
+    public void ChangeCoinUI()
     {
         coinText = GameManager.Instance.player.coinAmount;
         text.text = $"x {coinText}";
