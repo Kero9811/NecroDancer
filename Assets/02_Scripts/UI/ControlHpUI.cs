@@ -30,6 +30,7 @@ public class ControlHpUI : MonoBehaviour
 
     public void ChangeHpUI()
     {
+        heartCount = player.currentHp / 2;
         int loseHp = player.maxHp - player.currentHp;
         emptyHeart = loseHp / 2;
         fullHeart = heartCount - emptyHeart;
@@ -68,6 +69,11 @@ public class ControlHpUI : MonoBehaviour
         }
         else
         {
+            if (emptyHeart <= -1)
+            {
+                return;
+            }
+
             for (int i = 0; i < emptyHeart; i++)
             {
                 images[i].sprite = sprites[2];
@@ -88,10 +94,12 @@ public class ControlHpUI : MonoBehaviour
         if (player.maxHp == 8)
         {
             images[3].gameObject.SetActive(true);
+            heartCount = player.currentHp / 2;
         }
         else if(player.maxHp == 10)
         {
             images[4].gameObject.SetActive(true);
+            heartCount = player.currentHp / 2;
         }
         else
         {

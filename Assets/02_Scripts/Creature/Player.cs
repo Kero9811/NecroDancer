@@ -334,6 +334,17 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Heal(int healPoint, int maxHeart)
+    {
+        maxHp += maxHeart;
+        currentHp += healPoint;
+
+        if (currentHp >= maxHp)
+        {
+            currentHp = maxHp;
+        }
+    }
+
     public void Jump(Vector3 targetPos)
     {
         startPos = transform.position;

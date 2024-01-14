@@ -7,13 +7,17 @@ public enum Type
 {
     Skeleton,
     Dragon,
-    Bat
+    Bat,
+    GreenSlime,
+    BlueSlime,
+    GoldSlime
 }
 
-public abstract class Monster : MonoBehaviour
+public class Monster : MonoBehaviour
 {
     public int currentHp;
     public int maxHp;
+    public int dropGold;
 
     public int damage;
     public Type type;
@@ -43,18 +47,33 @@ public abstract class Monster : MonoBehaviour
         GameManager.Instance.player.currentCoinPoint++;
         GameManager.Instance.player.CheckMultiPoint();
 
-        if (type == Type.Skeleton)
+        switch (type)
         {
-            GameManager.Instance.skeletons.Remove(gameObject.GetComponent<Skeleton>());
+            case Type.Skeleton:
+                GameManager.Instance.skeletons.Remove(gameObject.GetComponent<Skeleton>());
+                break;
+            case Type.Bat:
+                GameManager.Instance.bats.Remove(gameObject.GetComponent<Bat>());
+                break;
+            case Type.Dragon:
+                GameManager.Instance.dragons.Remove(gameObject.GetComponent<Dragon>());
+                break;
+            case Type.GreenSlime:
+                GameManager.Instance.greenSlimes.Remove(gameObject.GetComponent<GreenSlime>());
+                break;
+            case Type.BlueSlime:
+                GameManager.Instance.blueSlimes.Remove(gameObject.GetComponent<BlueSlime>());
+                break;
+            default:
+                return;
         }
-        else if (type == Type.Bat)
-        {
-            GameManager.Instance.bats.Remove(gameObject.GetComponent<Bat>());
-        }
-        else if (type == Type.Dragon)
-        {
-            GameManager.Instance.dragons.Remove(gameObject.GetComponent<Dragon>());
-        }
+
+        GameObject money = GameManager.Instance.pool.Get(1);
+        money.GetComponent<Money>().dropCoin = dropGold;
+        print(money.GetComponent<Money>().dropCoin);
+        print(dropGold);
+        money.transform.position = transform.position;
+
         Destroy(gameObject);
     }
 

@@ -25,6 +25,7 @@ public class Skeleton : Monster
 
     Player target;
     Animator animator;
+    SpriteRenderer spriteRenderer;
 
     int sizeX, sizeY;
     Node[,] NodeArray;
@@ -42,6 +43,7 @@ public class Skeleton : Monster
     {
         target = FindObjectOfType<Player>();
         animator = GetComponentInChildren<Animator>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     public void Move()
@@ -60,6 +62,8 @@ public class Skeleton : Monster
 
             Vector2 nextPos = new Vector2(FinalNodeList[1].x, FinalNodeList[1].y);
             CheckNextPos(nextPos);
+
+            spriteRenderer.flipX = nextPos.x < targetPos.x;
 
             if (nextPos == targetPos)
             {

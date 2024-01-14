@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MonsterHpUI : MonoBehaviour
 {
-    Monster dragon;
+    Monster monster;
     [SerializeField] Image[] images;
     public Sprite[] sprites = new Sprite[2];
     int emptyHeart;
@@ -14,12 +14,12 @@ public class MonsterHpUI : MonoBehaviour
 
     private void Awake()
     {
-        dragon = GetComponentInParent<Dragon>();
+        monster = GetComponentInParent<Monster>();
         images = GetComponentsInChildren<Image>();
     }
     private void Start()
     {
-        heartCount = dragon.currentHp;
+        heartCount = monster.currentHp;
 
         for (int i = 0; i < images.Length; i++)
         {
@@ -37,7 +37,7 @@ public class MonsterHpUI : MonoBehaviour
             }
         }
 
-        int loseHp = dragon.maxHp - dragon.currentHp;
+        int loseHp = monster.maxHp - monster.currentHp;
         emptyHeart = loseHp;
 
         for (int i = 0; i < emptyHeart; i++)

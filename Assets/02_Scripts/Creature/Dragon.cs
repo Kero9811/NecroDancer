@@ -14,6 +14,7 @@ public class Dragon : Monster
     Node StartNode, TargetNode, CurNode;
     List<Node> OpenList, ClosedList;
     MonsterHpUI monsterHp;
+    SpriteRenderer spriteRenderer;
 
 
     [SerializeField] float maxHeight;
@@ -26,6 +27,7 @@ public class Dragon : Monster
     {
         target = FindObjectOfType<Player>();
         monsterHp = GetComponentInChildren<MonsterHpUI>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     public void Move()
@@ -44,6 +46,8 @@ public class Dragon : Monster
 
             Vector2 nextPos = new Vector2(FinalNodeList[1].x, FinalNodeList[1].y);
             CheckNextPos(nextPos);
+
+            spriteRenderer.flipX = nextPos.x < targetPos.x;
 
             if (nextPos == targetPos)
             {

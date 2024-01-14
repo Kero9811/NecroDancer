@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     public List<Skeleton> skeletons = new List<Skeleton>();
     public List<Bat> bats = new List<Bat>();
     public List<Dragon> dragons = new List<Dragon>();
+    public List<GreenSlime> greenSlimes = new List<GreenSlime>();
+    public List<BlueSlime> blueSlimes = new List<BlueSlime>();
 
     public List<Vector2> monstersNextPos = new List<Vector2>();
 
@@ -63,6 +65,16 @@ public class GameManager : MonoBehaviour
                 dragon.Move();
             }
 
+            foreach (var greenSlime in greenSlimes)
+            {
+                greenSlime.Move();
+            }
+
+            foreach (var blueSlime in blueSlimes)
+            {
+                blueSlime.Move();
+            }
+
             player.isMiss = true;
             monstersNextPos.Clear();
             tilemapRenderer.enabled = !tilemapRenderer.enabled;
@@ -86,6 +98,16 @@ public class GameManager : MonoBehaviour
         foreach (var dragon in dragons)
         {
             dragon.Move();
+        }
+
+        foreach (var greenSlime in greenSlimes)
+        {
+            greenSlime.Move();
+        }
+
+        foreach (var blueSlime in blueSlimes)
+        {
+            blueSlime.Move();
         }
 
         monstersNextPos.Clear();
