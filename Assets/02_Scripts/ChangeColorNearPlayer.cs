@@ -4,13 +4,15 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TileRGB : MonoBehaviour
+public class ChangeColorNearPlayer : MonoBehaviour
 {
     public Tilemap[] tilemaps;
+    public SpriteRenderer[] sprites;
     public int sightRange;
     public Color alreadyCheckView;
 
     List<Vector3Int> beforeChangedCellList = new List<Vector3Int>();
+    List<SpriteRenderer> beforeChangedObjectList = new List<SpriteRenderer>();
 
     private void Start()
     {
@@ -59,5 +61,31 @@ public class TileRGB : MonoBehaviour
         }
 
         beforeChangedCellList = new List<Vector3Int>(currentChangedCellList);
+    }
+
+    public void SeeObject(SpriteRenderer renderer)
+    {
+        renderer.color = Color.white;
+    }
+
+    public void DontSeeObject(SpriteRenderer renderer)
+    {
+        renderer.color = alreadyCheckView;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent(out SpriteRenderer renderer))
+        {
+            SeeObject(renderer);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.TryGetComponent(out SpriteRenderer renderer))
+        {
+            DontSeeObject(renderer);
+        }
     }
 }

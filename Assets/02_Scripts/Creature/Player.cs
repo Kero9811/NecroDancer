@@ -51,13 +51,13 @@ public class Player : MonoBehaviour
     bool isAttack;
     public bool isMiss;
 
-    TileRGB tileRGB;
+    ChangeColorNearPlayer changeColorNearPlayer;
 
     private void Awake()
     {
         headRenderer = transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>();
         bodyRenderer = transform.GetChild(0).GetChild(1).GetComponent<SpriteRenderer>();
-        tileRGB = GetComponent<TileRGB>();
+        changeColorNearPlayer = GetComponent<ChangeColorNearPlayer>();
     }
 
     private void Start()
@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
         weaponType = WeaponType.Dagger;
         shovelGrade = ShovelGrade.Iron;
 
-        tileRGB.ChangeTileColor();
+        changeColorNearPlayer.ChangeTileColor();
     }
 
     private void Update()
@@ -75,7 +75,6 @@ public class Player : MonoBehaviour
         {
             if (isMiss)
             {
-                print("miss");
                 lastInputTime = Time.time -.1f;
                 isMiss = false;
                 return;
@@ -123,7 +122,7 @@ public class Player : MonoBehaviour
                     }
 
                     Jump(nextPos);
-                    tileRGB.ChangeTileColor();
+                    changeColorNearPlayer.ChangeTileColor();
                     this.nextPos = nextPos;
                     GameManager.Instance.playerMove();
                     lastInputTime = Time.time;
@@ -173,7 +172,7 @@ public class Player : MonoBehaviour
                     }
 
                     Jump(nextPos);
-                    tileRGB.ChangeTileColor();
+                    changeColorNearPlayer.ChangeTileColor();
                     this.nextPos = nextPos;
                     GameManager.Instance.playerMove();
                     lastInputTime = Time.time;
@@ -226,7 +225,7 @@ public class Player : MonoBehaviour
                     }
 
                     Jump(nextPos);
-                    tileRGB.ChangeTileColor();
+                    changeColorNearPlayer.ChangeTileColor();
                     this.nextPos = nextPos;
                     GameManager.Instance.playerMove();
                     lastInputTime = Time.time;
@@ -279,7 +278,7 @@ public class Player : MonoBehaviour
                     }
 
                     Jump(nextPos);
-                    tileRGB.ChangeTileColor();
+                    changeColorNearPlayer.ChangeTileColor();
                     this.nextPos = nextPos;
                     GameManager.Instance.playerMove();
                     lastInputTime = Time.time;
