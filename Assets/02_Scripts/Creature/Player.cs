@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
 
     ChangeColorNearPlayer changeColorNearPlayer;
     public Item[] items;
+    ShopKeeper shopKeeper;
 
     private void Awake()
     {
@@ -66,6 +67,7 @@ public class Player : MonoBehaviour
         weaponType = WeaponType.Dagger;
         shovelGrade = ShovelGrade.Iron;
         items = FindObjectsOfType<Item>();
+        shopKeeper = FindObjectOfType<ShopKeeper>();
     }
 
     private void Update()
@@ -108,6 +110,13 @@ public class Player : MonoBehaviour
                                 return;
                             }
                         }
+                        else if (wall.collider.TryGetComponent(out ShopKeeper shopKeeper))
+                        {
+                            GameManager.Instance.shakeCamera.StartShake(5f, .1f);
+                            currentCoinPoint = 1;
+                            refuseInput = true;
+                            return;
+                        }
                     }
 
                     bottomLeft = new Vector2Int((int)nextPos.x - (verticalRange / 2), (int)nextPos.y);
@@ -125,6 +134,7 @@ public class Player : MonoBehaviour
                     GameManager.Instance.playerMove();
                     changeColorNearPlayer.ChangeTileColor(nextPos);
                     FindItems();
+                    FindMerchant();
                     lastInputTime = Time.time;
                 }
 
@@ -159,6 +169,13 @@ public class Player : MonoBehaviour
                                 return;
                             }
                         }
+                        else if (wall.collider.TryGetComponent(out ShopKeeper shopKeeper))
+                        {
+                            GameManager.Instance.shakeCamera.StartShake(5f, .1f);
+                            currentCoinPoint = 1;
+                            refuseInput = true;
+                            return;
+                        }
                     }
 
                     bottomLeft = new Vector2Int((int)nextPos.x - (verticalRange / 2), (int)nextPos.y - (horizontalRange / 2));
@@ -176,6 +193,7 @@ public class Player : MonoBehaviour
                     GameManager.Instance.playerMove();
                     changeColorNearPlayer.ChangeTileColor(nextPos);
                     FindItems();
+                    FindMerchant();
                     lastInputTime = Time.time;
                 }
 
@@ -213,6 +231,13 @@ public class Player : MonoBehaviour
                                 return;
                             }
                         }
+                        else if (wall.collider.TryGetComponent(out ShopKeeper shopKeeper))
+                        {
+                            GameManager.Instance.shakeCamera.StartShake(5f, .1f);
+                            currentCoinPoint = 1;
+                            refuseInput = true;
+                            return;
+                        }
                     }
 
                     bottomLeft = new Vector2Int((int)nextPos.x - (horizontalRange / 2), (int)nextPos.y - (verticalRange / 2));
@@ -230,6 +255,7 @@ public class Player : MonoBehaviour
                     GameManager.Instance.playerMove();
                     changeColorNearPlayer.ChangeTileColor(nextPos);
                     FindItems();
+                    FindMerchant();
                     lastInputTime = Time.time;
                 }
 
@@ -267,6 +293,13 @@ public class Player : MonoBehaviour
                                 return;
                             }
                         }
+                        else if (wall.collider.TryGetComponent(out ShopKeeper shopKeeper))
+                        {
+                            GameManager.Instance.shakeCamera.StartShake(5f, .1f);
+                            currentCoinPoint = 1;
+                            refuseInput = true;
+                            return;
+                        }
                     }
 
                     bottomLeft = new Vector2Int((int)nextPos.x, (int)nextPos.y - (verticalRange / 2));
@@ -284,6 +317,7 @@ public class Player : MonoBehaviour
                     GameManager.Instance.playerMove();
                     changeColorNearPlayer.ChangeTileColor(nextPos);
                     FindItems();
+                    FindMerchant();
                     lastInputTime = Time.time;
                 }
 
@@ -409,5 +443,10 @@ public class Player : MonoBehaviour
             }
             else { return; }
         }
+    }
+
+    private void FindMerchant()
+    {
+        shopKeeper.CheckDistance();
     }
 }

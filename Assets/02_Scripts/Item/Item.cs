@@ -39,8 +39,11 @@ public class Item : MonoBehaviour
         if (distance >= (GameManager.Instance.player.transform.position - transform.position).magnitude)
         {
             spriteRenderer.color = Color.white;
-            text.enabled = true;
             isAlreadySpotted = true;
+            if (!isUseable)
+            {
+                text.enabled = true;
+            }
         }
         else if (isAlreadySpotted)
         {
