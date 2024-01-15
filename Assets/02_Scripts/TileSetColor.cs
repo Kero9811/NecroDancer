@@ -7,7 +7,6 @@ public class TileSetColor : MonoBehaviour
 {
     public Tilemap tilemap;
     public Color personalColor;
-    public bool visited;
 
     private void Awake()
     {
@@ -17,9 +16,7 @@ public class TileSetColor : MonoBehaviour
 
     public void FirstTileColorChange()
     {
-        BoundsInt bounds = tilemap.cellBounds;
-
-        foreach (var tilePos in bounds.allPositionsWithin)
+        foreach (var tilePos in tilemap.cellBounds.allPositionsWithin)
         {
             tilemap.SetTileFlags(tilePos, TileFlags.None);
             tilemap.SetColor(tilePos, Color.black);
@@ -28,11 +25,10 @@ public class TileSetColor : MonoBehaviour
 
     public void TileColorChange()
     {
-        BoundsInt bounds = tilemap.cellBounds;
-
-        foreach (var tilePos in bounds.allPositionsWithin)
+        foreach (var tilePos in tilemap.cellBounds.allPositionsWithin)
         {
-            if (GetTileColor(tilePos) == Color.white)
+            Color tileColor = GetTileColor(tilePos);
+            if (tileColor == Color.white || tileColor == personalColor)
             {
                 tilemap.SetColor(tilePos, personalColor);
             }

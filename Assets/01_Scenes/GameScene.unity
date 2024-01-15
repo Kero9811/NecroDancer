@@ -2377,7 +2377,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 0}
   personalColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
-  visited: 0
 --- !u!1 &542809189
 GameObject:
   m_ObjectHideFlags: 0
@@ -3998,8 +3997,8 @@ MonoBehaviour:
   - {fileID: 535438588}
   - {fileID: 1214818495}
   - {fileID: 803833680}
-  sightRange: 3
-  colors: []
+  sightRange: 5
+  alreadyCheckView: {r: 0.25490198, g: 0.25490198, b: 0.25490198, a: 1}
 --- !u!1 &803833676
 GameObject:
   m_ObjectHideFlags: 0
@@ -4190,7 +4189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 0}
   personalColor: {r: 0.25490198, g: 0.25490198, b: 0.25490198, a: 1}
-  visited: 0
 --- !u!1 &805422837
 GameObject:
   m_ObjectHideFlags: 0
@@ -22089,7 +22087,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 0}
   personalColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
-  visited: 0
 --- !u!1 &924340529
 GameObject:
   m_ObjectHideFlags: 0
@@ -43537,7 +43534,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 0}
   personalColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
-  visited: 0
 --- !u!1 &931189988
 GameObject:
   m_ObjectHideFlags: 0
@@ -44509,7 +44505,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 0}
   personalColor: {r: 0.25490198, g: 0.25490198, b: 0.25490198, a: 1}
-  visited: 0
 --- !u!19719996 &1214818497
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -66479,7 +66474,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 0}
   personalColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
-  visited: 0
 --- !u!1 &1555467546
 GameObject:
   m_ObjectHideFlags: 0
@@ -67350,7 +67344,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 0}
   personalColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
-  visited: 0
 --- !u!1 &1788305833
 GameObject:
   m_ObjectHideFlags: 0
