@@ -3915,6 +3915,7 @@ MonoBehaviour:
   sightRange: 2
   defense: 0
   currentCoinPoint: 0
+  killCount: 0
   maxCoinPoint: 4
   coinAmount: 100
   jewelAmount: 7
@@ -3998,6 +3999,7 @@ MonoBehaviour:
   - {fileID: 1214818495}
   - {fileID: 803833680}
   sightRange: 3
+  colors: []
 --- !u!1 &803833676
 GameObject:
   m_ObjectHideFlags: 0
@@ -43534,7 +43536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 0}
-  personalColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 0}
+  personalColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
   visited: 0
 --- !u!1 &931189988
 GameObject:
@@ -66476,7 +66478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 0}
-  personalColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 0}
+  personalColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
   visited: 0
 --- !u!1 &1555467546
 GameObject:
@@ -67347,7 +67349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 0}
-  personalColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 0}
+  personalColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
   visited: 0
 --- !u!1 &1788305833
 GameObject:

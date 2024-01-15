@@ -12,10 +12,10 @@ public class TileSetColor : MonoBehaviour
     private void Awake()
     {
         tilemap = GetComponent<Tilemap>();
-        TileColorChange();
+        FirstTileColorChange();
     }
 
-    private void TileColorChange()
+    public void FirstTileColorChange()
     {
         BoundsInt bounds = tilemap.cellBounds;
 
@@ -24,5 +24,37 @@ public class TileSetColor : MonoBehaviour
             tilemap.SetTileFlags(tilePos, TileFlags.None);
             tilemap.SetColor(tilePos, Color.black);
         }
+    }
+
+    public void TileColorChange()
+    {
+        BoundsInt bounds = tilemap.cellBounds;
+
+        foreach (var tilePos in bounds.allPositionsWithin)
+        {
+            if (GetTileColor(tilePos) == Color.white)
+            {
+                tilemap.SetColor(tilePos, personalColor);
+            }
+            else
+            {
+                tilemap.SetColor(tilePos, Color.black);
+            }
+        }
+    }
+
+    private Color GetTileColor(Vector3Int tilePos)
+    {
+        TileBase tile = tilemap.GetTile(tilePos);
+        if (tile == null)
+        {
+            return Color.black;
+        }
+
+        Tile tileData = (Tile)tile;
+
+        Color tileColor = tileData.color;
+
+        return tileColor;
     }
 }
