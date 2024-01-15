@@ -5,15 +5,9 @@ using UnityEngine;
 
 public class PlusHeart : Food
 {
-    TextMeshProUGUI text;
-
-    private void Awake()
+    new void Start()
     {
-        text = GetComponentInChildren<TextMeshProUGUI>();
-    }
-
-    private void Start()
-    {
+        base.Start();
         maxHeart = 2;
         healPoint = 2;
         price = 40;

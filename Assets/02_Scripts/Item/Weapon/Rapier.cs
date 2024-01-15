@@ -8,22 +8,15 @@ public class Rapier : Weapon
 {
     [SerializeField] WeaponType weaponType = WeaponType.Rapier;
     WeaponUI weaponUI;
-    SpriteRenderer spriteRenderer;
     int originDmg;
     int originHorizon;
     int originVertical;
     [SerializeField] WeaponType originType;
-    TextMeshProUGUI text;
 
 
-    private void Awake()
+    new void Start()
     {
-        text = GetComponentInChildren<TextMeshProUGUI>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-    }
-
-    private void Start()
-    {
+        base.Start();
         damage = 1;
         horizontalRange = 2;
         verticalRange = 1;
@@ -52,6 +45,7 @@ public class Rapier : Weapon
             else if (player.coinAmount >= price)
             {
                 player.coinAmount -= price;
+                coinText.ChangeCoinUI();
                 ChanageInfor(player);
                 player.damage = originDmg;
                 player.horizontalRange = originHorizon;

@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     public int maxHp;
     public int damage;
     public int digDamage;
-    public int sightRange;
     public int defense;
     public int currentCoinPoint = 1;
     public int killCount = 0;
@@ -52,6 +51,7 @@ public class Player : MonoBehaviour
     public bool isMiss;
 
     ChangeColorNearPlayer changeColorNearPlayer;
+    public Item[] items;
 
     private void Awake()
     {
@@ -65,8 +65,7 @@ public class Player : MonoBehaviour
         currentHp = maxHp;
         weaponType = WeaponType.Dagger;
         shovelGrade = ShovelGrade.Iron;
-
-        changeColorNearPlayer.ChangeTileColor();
+        items = FindObjectsOfType<Item>();
     }
 
     private void Update()
@@ -122,9 +121,10 @@ public class Player : MonoBehaviour
                     }
 
                     Jump(nextPos);
-                    changeColorNearPlayer.ChangeTileColor();
                     this.nextPos = nextPos;
                     GameManager.Instance.playerMove();
+                    changeColorNearPlayer.ChangeTileColor(nextPos);
+                    FindItems();
                     lastInputTime = Time.time;
                 }
 
@@ -172,9 +172,10 @@ public class Player : MonoBehaviour
                     }
 
                     Jump(nextPos);
-                    changeColorNearPlayer.ChangeTileColor();
                     this.nextPos = nextPos;
                     GameManager.Instance.playerMove();
+                    changeColorNearPlayer.ChangeTileColor(nextPos);
+                    FindItems();
                     lastInputTime = Time.time;
                 }
 
@@ -225,9 +226,10 @@ public class Player : MonoBehaviour
                     }
 
                     Jump(nextPos);
-                    changeColorNearPlayer.ChangeTileColor();
                     this.nextPos = nextPos;
                     GameManager.Instance.playerMove();
+                    changeColorNearPlayer.ChangeTileColor(nextPos);
+                    FindItems();
                     lastInputTime = Time.time;
                 }
 
@@ -278,9 +280,10 @@ public class Player : MonoBehaviour
                     }
 
                     Jump(nextPos);
-                    changeColorNearPlayer.ChangeTileColor();
                     this.nextPos = nextPos;
                     GameManager.Instance.playerMove();
+                    changeColorNearPlayer.ChangeTileColor(nextPos);
+                    FindItems();
                     lastInputTime = Time.time;
                 }
 
@@ -393,6 +396,18 @@ public class Player : MonoBehaviour
             {
                 currentCoinPoint = maxCoinPoint;
             }
+        }
+    }
+
+    private void FindItems()
+    {
+        foreach (var item in items)
+        {
+            if (item != null)
+            {
+                item.CheckDistance();
+            }
+            else { return; }
         }
     }
 }

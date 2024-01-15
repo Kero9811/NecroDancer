@@ -12,18 +12,10 @@ public class Bat : Monster
     [SerializeField] Vector3 slideStartPos;
     [SerializeField] Vector3 slideTargetPos;
     public double currentTime = 0;
-    Player target;
-    SpriteRenderer spriteRenderer;
 
     Vector2 myPos;
     public LayerMask targetLayer;
     public LayerMask wallLayer;
-
-    protected void Start()
-    {
-        target = FindObjectOfType<Player>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-    }
 
     public void Move()
     {
@@ -88,6 +80,8 @@ public class Bat : Monster
         {
             actionCount--;
         }
+
+        CheckDistance();
     }
 
     private bool IsBlockedInDirection(Vector2 direction)

@@ -5,15 +5,9 @@ using UnityEngine;
 
 public class Cheese : Food
 {
-    TextMeshProUGUI text;
-
-    private void Awake()
+    new void Start()
     {
-        text = GetComponentInChildren<TextMeshProUGUI>();
-    }
-
-    private void Start()
-    {
+        base.Start();
         maxHeart = 0;
         healPoint = 4;
         price = 20;

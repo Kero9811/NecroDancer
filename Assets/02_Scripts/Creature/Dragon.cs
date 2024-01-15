@@ -7,14 +7,11 @@ public class Dragon : Monster
     public Vector2Int bottomLeft, topRight, startPos, targetPos;
     public List<Node> FinalNodeList;
 
-    Player target;
-
     int sizeX, sizeY;
     Node[,] NodeArray;
     Node StartNode, TargetNode, CurNode;
     List<Node> OpenList, ClosedList;
     MonsterHpUI monsterHp;
-    SpriteRenderer spriteRenderer;
 
 
     [SerializeField] float maxHeight;
@@ -23,11 +20,10 @@ public class Dragon : Monster
     [SerializeField] Vector3 jumpTargetPos;
     public double currentTime = 0;
 
-    private void Start()
+    new void Start()
     {
-        target = FindObjectOfType<Player>();
+        base.Start();
         monsterHp = GetComponentInChildren<MonsterHpUI>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     public void Move()
@@ -67,6 +63,8 @@ public class Dragon : Monster
         {
             actionCount--;
         }
+
+        CheckDistance();
     }
 
     public override void TakeDamage(int damage)

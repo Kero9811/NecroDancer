@@ -16,6 +16,11 @@ public class Food : Item
     public int maxHeart;
     public ControlHpUI hpUI;
 
+    new void Start()
+    {
+        base.Start();
+    }
+
     public virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent(out Player player))
@@ -23,6 +28,7 @@ public class Food : Item
             if (player.coinAmount >= price)
             {
                 player.coinAmount -= price;
+                coinText.ChangeCoinUI();
                 player.Heal(healPoint, maxHeart);
                 hpUI.ChangeHpUI();
                 Destroy(gameObject);

@@ -10,7 +10,6 @@ public enum State
 
 public class BlueSlime : Monster
 {
-    Player target;
     MonsterHpUI monsterHp;
     State state;
 
@@ -20,9 +19,9 @@ public class BlueSlime : Monster
     [SerializeField] Vector3 jumpTargetPos;
     public Vector2Int targetPos;
 
-    private void Start()
+    new void Start()
     {
-        target = FindObjectOfType<Player>();
+        base.Start();
         monsterHp = GetComponentInChildren<MonsterHpUI>();
         state = State.Up;
     }
@@ -76,6 +75,8 @@ public class BlueSlime : Monster
         {
             actionCount--;
         }
+
+        CheckDistance();
     }
 
     public override void TakeDamage(int damage)

@@ -7,20 +7,13 @@ public class IronShovel : Shovel
 {
     ShovelGrade shovelGrade = ShovelGrade.Iron;
     [SerializeField] ShovelUI shovelUI;
-    SpriteRenderer spriteRenderer;
     int originDmg;
     ShovelGrade originGrade;
-    TextMeshProUGUI text;
 
 
-    private void Awake()
+    new void Start()
     {
-        text = GetComponentInChildren<TextMeshProUGUI>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-    }
-
-    private void Start()
-    {
+        base.Start();
         digPower = 1;
         price = 20;
         originDmg = digPower;
@@ -43,6 +36,7 @@ public class IronShovel : Shovel
             else if (player.coinAmount >= price)
             {
                 player.coinAmount -= price;
+                coinText.ChangeCoinUI();
                 ChanageInfor(player);
                 player.digDamage = originDmg;
                 player.shovelGrade = originGrade;

@@ -810,6 +810,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 0
   isUseable: 0
+  coinText: {fileID: 0}
+  changeColorNearPlayer: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  text: {fileID: 0}
+  distance: 0
   healPoint: 0
   maxHeart: 0
   hpUI: {fileID: 0}
@@ -2560,6 +2565,10 @@ MonoBehaviour:
   actionCount: 1
   originCount: 1
   isFull: 0
+  distance: 0
+  isAlreadySpotted: 0
+  target: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   bottomLeft: {x: -100, y: -100}
   topRight: {x: 100, y: 100}
   startPos: {x: 0, y: 0}
@@ -2736,6 +2745,10 @@ MonoBehaviour:
   actionCount: 1
   originCount: 1
   isFull: 0
+  distance: 0
+  isAlreadySpotted: 0
+  target: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   targetPos: {x: 0, y: 0}
   slidingDuration: 0.1
   slideStartPos: {x: 0, y: 0, z: 0}
@@ -3742,6 +3755,10 @@ MonoBehaviour:
   actionCount: 0
   originCount: 1
   isFull: 0
+  distance: 0
+  isAlreadySpotted: 0
+  target: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   targetPos: {x: 0, y: 0}
   slidingDuration: 0.1
   slideStartPos: {x: 0, y: 0, z: 0}
@@ -3872,7 +3889,6 @@ GameObject:
   - component: {fileID: 802260577}
   - component: {fileID: 802260575}
   - component: {fileID: 802260576}
-  - component: {fileID: 802260578}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3912,7 +3928,6 @@ MonoBehaviour:
   maxHp: 6
   damage: 1
   digDamage: 1
-  sightRange: 2
   defense: 0
   currentCoinPoint: 0
   killCount: 0
@@ -3941,6 +3956,7 @@ MonoBehaviour:
   horizontalRange: 1
   verticalRange: 1
   isMiss: 0
+  items: []
 --- !u!70 &802260575
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3998,35 +4014,10 @@ MonoBehaviour:
   - {fileID: 535438588}
   - {fileID: 1214818495}
   - {fileID: 803833680}
-  sprites: []
   sightRange: 3
   alreadyCheckView: {r: 0.25490198, g: 0.25490198, b: 0.25490198, a: 1}
---- !u!61 &802260578
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 802260572}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 7, y: 7}
-  m_EdgeRadius: 0
+  beforeChangedCellList: []
+  currentChangedCellList: []
 --- !u!1 &803833676
 GameObject:
   m_ObjectHideFlags: 0
@@ -43940,6 +43931,10 @@ MonoBehaviour:
   actionCount: 1
   originCount: 1
   isFull: 0
+  distance: 0
+  isAlreadySpotted: 0
+  target: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   maxHeight: 0.3
   jumpingDuration: 0.1
   jumpStartPos: {x: 0, y: 0, z: 0}
@@ -44696,6 +44691,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 0
   isUseable: 0
+  coinText: {fileID: 0}
+  changeColorNearPlayer: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  text: {fileID: 0}
+  distance: 0
   healPoint: 0
   maxHeart: 0
   hpUI: {fileID: 0}
@@ -44801,6 +44801,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1389006060}
+  - component: {fileID: 1389006062}
   - component: {fileID: 1389006061}
   m_Layer: 6
   m_Name: ShopKeeper
@@ -44841,6 +44842,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.5
+--- !u!114 &1389006062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389006058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18fb14fc33ae69d4db076796fee2c9e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0
 --- !u!1 &1408555447
 GameObject:
   m_ObjectHideFlags: 0
@@ -66836,6 +66850,10 @@ MonoBehaviour:
   actionCount: 0
   originCount: 0
   isFull: 0
+  distance: 0
+  isAlreadySpotted: 0
+  target: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!1 &1660075342
 GameObject:
   m_ObjectHideFlags: 0
@@ -67742,6 +67760,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 0
   isUseable: 0
+  coinText: {fileID: 0}
+  changeColorNearPlayer: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  text: {fileID: 0}
+  distance: 0
   healPoint: 0
   maxHeart: 0
   hpUI: {fileID: 0}
@@ -68100,6 +68123,10 @@ MonoBehaviour:
   actionCount: 0
   originCount: 1
   isFull: 0
+  distance: 0
+  isAlreadySpotted: 0
+  target: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   bottomLeft: {x: -100, y: -100}
   topRight: {x: 100, y: 100}
   startPos: {x: 0, y: 0}
@@ -68625,6 +68652,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 0
   isUseable: 0
+  coinText: {fileID: 0}
+  changeColorNearPlayer: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  text: {fileID: 0}
+  distance: 0
   healPoint: 0
   maxHeart: 0
   hpUI: {fileID: 0}

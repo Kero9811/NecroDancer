@@ -1,29 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShopKeeper : MonoBehaviour
 {
-    [SerializeField] AudioSource mainCamAudio;
+    public float distance;
+    SpriteRenderer spriteRenderer;
+    bool isAlreadySpotted;
+    Player target;
 
     private void Awake()
     {
-        mainCamAudio = Camera.main.GetComponent<AudioSource>();
+        distance = 3.9f;
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer.color = Color.black;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Start()
     {
-        if (other.TryGetComponent(out Player player))
-        {
-            mainCamAudio.volume = 0;
-        }
+        target = FindObjectOfType<Player>();
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    public void CheckDistance()
     {
-        if (other.TryGetComponent(out Player player))
+        if (distance >= (GameManager.Instance.player.transform.position - transform.position).magnitude)
         {
-            mainCamAudio.volume = .1f;
+            spriteRenderer.color = Color.white;
+            isAlreadySpotted = true;
         }
+        else if (isAlreadySpotted)
+        {
+            spriteRenderer.color = target.GetComponent<ChangeColorNearPlayer>().alreadyCheckView;
+        }
+        else { return; }
     }
 }

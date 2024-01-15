@@ -5,15 +5,9 @@ using UnityEngine;
 
 public class Chicken : Food
 {
-    TextMeshProUGUI text;
-
-    private void Awake()
+    new void Start()
     {
-        text = GetComponentInChildren<TextMeshProUGUI>();
-    }
-
-    private void Start()
-    {
+        base.Start();
         maxHeart = 0;
         healPoint = 6;
         price = 35;

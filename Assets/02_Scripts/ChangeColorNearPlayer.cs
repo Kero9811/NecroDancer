@@ -7,12 +7,11 @@ using UnityEngine.Tilemaps;
 public class ChangeColorNearPlayer : MonoBehaviour
 {
     public Tilemap[] tilemaps;
-    public SpriteRenderer[] sprites;
     public int sightRange;
     public Color alreadyCheckView;
 
-    List<Vector3Int> beforeChangedCellList = new List<Vector3Int>();
-    List<SpriteRenderer> beforeChangedObjectList = new List<SpriteRenderer>();
+    public List<Vector3Int> beforeChangedCellList = new List<Vector3Int>();
+    public List<Vector3Int> currentChangedCellList = new List<Vector3Int>();
 
     private void Start()
     {
@@ -28,14 +27,12 @@ public class ChangeColorNearPlayer : MonoBehaviour
             }
         }
 
-        ChangeTileColor();
+        ChangeTileColor(transform.position);
     }
 
-    public void ChangeTileColor()
+    public void ChangeTileColor(Vector2 nextPos)
     {
-        List<Vector3Int> currentChangedCellList = new List<Vector3Int>();
-
-        Vector3Int playerPos = tilemaps[0].WorldToCell(transform.position);
+        Vector3Int playerPos = tilemaps[0].WorldToCell(new Vector3Int((int)nextPos.x, (int)nextPos.y, 0));
 
         for (int i = 0; i < tilemaps.Length; i++)
         {
@@ -61,31 +58,6 @@ public class ChangeColorNearPlayer : MonoBehaviour
         }
 
         beforeChangedCellList = new List<Vector3Int>(currentChangedCellList);
-    }
-
-    public void SeeObject(SpriteRenderer renderer)
-    {
-        renderer.color = Color.white;
-    }
-
-    public void DontSeeObject(SpriteRenderer renderer)
-    {
-        renderer.color = alreadyCheckView;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.TryGetComponent(out SpriteRenderer renderer))
-        {
-            SeeObject(renderer);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.TryGetComponent(out SpriteRenderer renderer))
-        {
-            DontSeeObject(renderer);
-        }
+        currentChangedCellList.Clear();
     }
 }

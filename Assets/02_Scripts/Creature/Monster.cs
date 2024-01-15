@@ -25,11 +25,24 @@ public class Monster : MonoBehaviour
     public int actionCount;
     public int originCount;
     public bool isFull;
+    public float distance;
+    public bool isAlreadySpotted;
+
+    public Player target;
+    public SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         currentHp = maxHp;
         actionCount = originCount;
+        distance = 3.9f;
+    }
+
+    public void Start()
+    {
+        target = FindObjectOfType<Player>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer.color = Color.black;
     }
 
     public virtual void TakeDamage(int damage)
@@ -85,5 +98,19 @@ public class Monster : MonoBehaviour
         {
             isFull = true;
         }
+    }
+
+    public void CheckDistance()
+    {
+        if (distance >= (GameManager.Instance.player.transform.position - transform.position).magnitude)
+        {
+            spriteRenderer.color = Color.white;
+            isAlreadySpotted = true;
+        }
+        else if (isAlreadySpotted)
+        {
+            spriteRenderer.color = target.GetComponent<ChangeColorNearPlayer>().alreadyCheckView;
+        }
+        else { return; }
     }
 }

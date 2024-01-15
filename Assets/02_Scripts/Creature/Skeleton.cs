@@ -23,10 +23,7 @@ public class Skeleton : Monster
     public Vector2Int bottomLeft, topRight, startPos, targetPos;
     public List<Node> FinalNodeList;
 
-    Player target;
     Animator animator;
-    SpriteRenderer spriteRenderer;
-
     int sizeX, sizeY;
     Node[,] NodeArray;
     Node StartNode, TargetNode, CurNode;
@@ -39,11 +36,10 @@ public class Skeleton : Monster
     [SerializeField] Vector3 jumpTargetPos;
     public double currentTime = 0;
 
-    private void Start()
+    new void Start()
     {
-        target = FindObjectOfType<Player>();
+        base.Start();
         animator = GetComponentInChildren<Animator>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     public void Move()
@@ -84,6 +80,7 @@ public class Skeleton : Monster
             actionCount--;
             animator.SetBool("ready", true);
         }
+        CheckDistance();
     }
 
     public void PathFinding()

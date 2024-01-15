@@ -7,22 +7,15 @@ public class Dagger : Weapon
 {
     WeaponType weaponType = WeaponType.Dagger;
     [SerializeField] WeaponUI weaponUI;
-    SpriteRenderer spriteRenderer;
     int originDmg;
     int originHorizon;
     int originVertical;
     WeaponType originType;
-    TextMeshProUGUI text;
 
 
-    private void Awake()
+    new void Start()
     {
-        text = GetComponentInChildren<TextMeshProUGUI>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-    }
-
-    private void Start()
-    {
+        base.Start();
         damage = 1;
         horizontalRange = 1;
         verticalRange = 1;
@@ -51,6 +44,7 @@ public class Dagger : Weapon
             else if (player.coinAmount >= price)
             {
                 player.coinAmount -= price;
+                coinText.ChangeCoinUI();
                 ChanageInfor(player);
                 player.damage = originDmg;
                 player.horizontalRange = originHorizon;
