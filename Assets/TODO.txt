@@ -1,6 +1,7 @@
 TODO:
 
 - 미니보스 처치 시 출구 열리기 (트리거 객체 심어놓고 죽으면 SetActive true, 심어놓은 객체의 position을 cellPosition으로 변환하여 타일도 변환)
+- UI 작업 (게임오버, 일시정지 이런거)
 - 맵 2개 추가
 - 코드 정리
 

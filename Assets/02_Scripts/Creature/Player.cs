@@ -22,7 +22,6 @@ public class Player : MonoBehaviour
     public int killCount = 0;
     [SerializeField] int maxCoinPoint = 4;
     public int coinAmount;
-    public int jewelAmount;
 
     [SerializeField] float lastInputTime = 0;
     [SerializeField] float inputCoolTime = .2f;
@@ -56,6 +55,7 @@ public class Player : MonoBehaviour
     ChangeColorNearPlayer changeColorNearPlayer;
     public Item[] items;
     ShopKeeper shopKeeper;
+    Exit exit;
 
     private void Awake()
     {
@@ -72,6 +72,7 @@ public class Player : MonoBehaviour
         shovelGrade = ShovelGrade.Iron;
         items = FindObjectsOfType<Item>();
         shopKeeper = FindObjectOfType<ShopKeeper>();
+        exit = FindObjectOfType<Exit>();
         currentCoinPoint = 1;
     }
 
@@ -143,6 +144,7 @@ public class Player : MonoBehaviour
                     changeColorNearPlayer.ChangeTileColor(nextPos);
                     FindItems();
                     FindMerchant();
+                    FindExit();
                     lastInputTime = Time.time;
                 }
 
@@ -205,6 +207,7 @@ public class Player : MonoBehaviour
                     changeColorNearPlayer.ChangeTileColor(nextPos);
                     FindItems();
                     FindMerchant();
+                    FindExit();
                     lastInputTime = Time.time;
                 }
 
@@ -270,6 +273,7 @@ public class Player : MonoBehaviour
                     changeColorNearPlayer.ChangeTileColor(nextPos);
                     FindItems();
                     FindMerchant();
+                    FindExit();
                     lastInputTime = Time.time;
                 }
 
@@ -335,6 +339,7 @@ public class Player : MonoBehaviour
                     changeColorNearPlayer.ChangeTileColor(nextPos);
                     FindItems();
                     FindMerchant();
+                    FindExit();
                     lastInputTime = Time.time;
                 }
 
@@ -491,5 +496,10 @@ public class Player : MonoBehaviour
     private void FindMerchant()
     {
         shopKeeper.CheckDistance();
+    }
+
+    private void FindExit()
+    {
+        exit.CheckDistance();
     }
 }

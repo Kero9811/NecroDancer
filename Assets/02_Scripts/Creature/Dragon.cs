@@ -17,6 +17,7 @@ public class Dragon : Monster
     AudioSource audioSource;
     public AudioClip[] audioClips;
     Canvas canvas;
+    Exit exit;
 
 
     [SerializeField] float maxHeight;
@@ -34,6 +35,7 @@ public class Dragon : Monster
         canvas = GetComponentInChildren<Canvas>();
 
         GameManager.Instance.dragons.Add(gameObject.GetComponent<Dragon>());
+        exit = FindObjectOfType<Exit>();
     }
 
     public void Move()
@@ -99,6 +101,7 @@ public class Dragon : Monster
         audioSource.Play();
         GameManager.Instance.player.killCount++;
         GameManager.Instance.player.CheckMultiPoint();
+        exit.isExecuted = true;
 
         GameManager.Instance.dragons.Remove(gameObject.GetComponent<Dragon>());
 

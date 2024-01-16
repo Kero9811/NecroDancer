@@ -70,15 +70,19 @@ public class Bat : Monster
                 }
                 else { }
 
+                CheckNextPos(myPos);
+
 
                 if (myPos == targetPos)
                 {
                     target.TakeDamage(damage);
                 }
-                else
+                else if (!isFull)
                 {
+                    GameManager.Instance.monstersNextPos.Add(myPos);
                     Slide(myPos);
                 }
+                else { }
             }
 
             actionCount = originCount;

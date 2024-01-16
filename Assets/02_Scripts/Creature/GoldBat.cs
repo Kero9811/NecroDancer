@@ -8,6 +8,7 @@ public class GoldBat : Bat
     AudioSource audioSource;
     Canvas canvas;
     CapsuleCollider2D monsterCollider;
+    Exit exit;
 
     new void Start()
     {
@@ -16,6 +17,7 @@ public class GoldBat : Bat
         audioSource = GetComponent<AudioSource>();
         canvas = GetComponentInChildren<Canvas>();
         monsterCollider = GetComponent<CapsuleCollider2D>();
+        exit = FindObjectOfType<Exit>();
     }
 
     public override void TakeDamage(int damage)
@@ -35,6 +37,7 @@ public class GoldBat : Bat
         audioSource.Play();
         GameManager.Instance.player.killCount++;
         GameManager.Instance.player.CheckMultiPoint();
+        exit.isExecuted = true;
         GameManager.Instance.bats.Remove(gameObject.GetComponent<Bat>());
 
         GameObject money = GameManager.Instance.pool.Get(1);
