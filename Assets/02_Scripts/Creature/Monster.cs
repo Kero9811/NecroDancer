@@ -78,9 +78,6 @@ public class Monster : MonoBehaviour
             case Type.BlueSlime:
                 GameManager.Instance.blueSlimes.Remove(gameObject.GetComponent<BlueSlime>());
                 break;
-            case Type.GoldBat:
-                GameManager.Instance.goldBats.Remove(gameObject.GetComponent<GoldBat>());
-                break;
             default:
                 return;
         }

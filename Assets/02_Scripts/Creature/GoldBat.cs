@@ -35,7 +35,7 @@ public class GoldBat : Bat
         audioSource.Play();
         GameManager.Instance.player.killCount++;
         GameManager.Instance.player.CheckMultiPoint();
-        GameManager.Instance.goldBats.Remove(gameObject.GetComponent<GoldBat>());
+        GameManager.Instance.bats.Remove(gameObject.GetComponent<Bat>());
 
         GameObject money = GameManager.Instance.pool.Get(1);
         money.GetComponent<Money>().dropCoin = dropGold;

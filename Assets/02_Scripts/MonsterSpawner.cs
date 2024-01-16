@@ -7,6 +7,7 @@ public class MonsterSpawner : MonoBehaviour
 {
     public Transform[] spawnPoints;
     public GameObject[] monsterPrefabs;
+    public GameObject[] eliteMonsterPrefabs;
     public int monsterCount;
 
     private void Awake()
@@ -27,8 +28,11 @@ public class MonsterSpawner : MonoBehaviour
             int randomNum = Random.Range(0, monsterPrefabs.Length);
             GameObject monster = Instantiate(monsterPrefabs[randomNum], spawnPoints[i].position, Quaternion.identity);
             monster.transform.SetParent(transform.parent);
-
         }
+
+        int randNum = Random.Range(0, eliteMonsterPrefabs.Length);
+        GameObject eliteMonster = Instantiate(eliteMonsterPrefabs[randNum], spawnPoints[spawnPoints.Length - 1].position, Quaternion.identity);
+        eliteMonster.transform.SetParent(transform.parent);
     }
 
     private Transform[] GetComponentsIntChildeExceptMe(Transform[] transforms)

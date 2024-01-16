@@ -40,6 +40,8 @@ public class Skeleton : Monster
     {
         base.Start();
         animator = GetComponentInChildren<Animator>();
+
+        GameManager.Instance.skeletons.Add(gameObject.GetComponent<Skeleton>());
     }
 
     public void Move()
@@ -59,7 +61,7 @@ public class Skeleton : Monster
             Vector2 nextPos = new Vector2(FinalNodeList[1].x, FinalNodeList[1].y);
             CheckNextPos(nextPos);
 
-            spriteRenderer.flipX = nextPos.x < targetPos.x;
+            
 
             if (nextPos == targetPos)
             {
@@ -67,6 +69,7 @@ public class Skeleton : Monster
             }
             else if (!isFull)
             {
+                spriteRenderer.flipX = nextPos.x < targetPos.x;
                 GameManager.Instance.monstersNextPos.Add(nextPos);
                 Jump(nextPos);
             }

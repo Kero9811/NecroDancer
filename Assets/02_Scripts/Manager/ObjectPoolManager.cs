@@ -39,9 +39,4 @@ public class ObjectPoolManager : MonoBehaviour
 
         return select;
     }
-
-    // ¿¹½Ã
-    //Transform bullet = GameManager.Instance.pool.Get(3).transform;
-    //bullet.position = transform.position;
-    //bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
 }

@@ -17,6 +17,13 @@ public class Bat : Monster
     public LayerMask targetLayer;
     public LayerMask wallLayer;
 
+    new void Start()
+    {
+        base.Start();
+
+        GameManager.Instance.bats.Add(gameObject.GetComponent<Bat>());
+    }
+
     public void Move()
     {
         if (actionCount == 0)

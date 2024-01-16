@@ -32,6 +32,8 @@ public class Dragon : Monster
         monsterCollider = GetComponent<CapsuleCollider2D>();
         audioSource = GetComponent<AudioSource>();
         canvas = GetComponentInChildren<Canvas>();
+
+        GameManager.Instance.dragons.Add(gameObject.GetComponent<Dragon>());
     }
 
     public void Move()

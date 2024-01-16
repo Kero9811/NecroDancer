@@ -24,6 +24,8 @@ public class BlueSlime : Monster
         base.Start();
         monsterHp = GetComponentInChildren<MonsterHpUI>();
         state = State.Up;
+
+        GameManager.Instance.blueSlimes.Add(gameObject.GetComponent<BlueSlime>());
     }
 
     public void Move()

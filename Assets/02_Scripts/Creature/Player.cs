@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 
 public class Player : MonoBehaviour
@@ -17,7 +18,7 @@ public class Player : MonoBehaviour
     public int damage;
     public int digDamage;
     public int defense;
-    public int currentCoinPoint = 1;
+    public int currentCoinPoint;
     public int killCount = 0;
     [SerializeField] int maxCoinPoint = 4;
     public int coinAmount;
@@ -71,6 +72,7 @@ public class Player : MonoBehaviour
         shovelGrade = ShovelGrade.Iron;
         items = FindObjectsOfType<Item>();
         shopKeeper = FindObjectOfType<ShopKeeper>();
+        currentCoinPoint = 1;
     }
 
     private void Update()
@@ -130,6 +132,7 @@ public class Player : MonoBehaviour
                     RangeAttack(bottomLeft, topRight);
                     if (isAttack)
                     {
+                        SpawnEffect(weaponType, nextPos, new Vector3(0, 0, 90));
                         isAttack = false;
                         return;
                     }
@@ -191,6 +194,7 @@ public class Player : MonoBehaviour
                     RangeAttack(bottomLeft, topRight);
                     if (isAttack)
                     {
+                        SpawnEffect(weaponType, nextPos, new Vector3(0, 0, -90));
                         isAttack = false;
                         return;
                     }
@@ -255,6 +259,7 @@ public class Player : MonoBehaviour
                     RangeAttack(bottomLeft, topRight);
                     if (isAttack)
                     {
+                        SpawnEffect(weaponType, nextPos, new Vector3(0, 180, 0));
                         isAttack = false;
                         return;
                     }
@@ -319,6 +324,7 @@ public class Player : MonoBehaviour
                     RangeAttack(bottomLeft, topRight);
                     if (isAttack)
                     {
+                        SpawnEffect(weaponType,nextPos, new Vector3(0, 0, 0));
                         isAttack = false;
                         return;
                     }
@@ -364,6 +370,14 @@ public class Player : MonoBehaviour
                 isAttack = true;
             }
         }
+    }
+
+    private void SpawnEffect(WeaponType type, Vector2 nextPos, Vector3 rotateValue)
+    {
+        GameObject effect = GameManager.Instance.pool.Get((int)type + 2);
+        effect.transform.position = nextPos;
+        effect.transform.rotation = Quaternion.identity;
+        effect.transform.Rotate(rotateValue);
     }
 
     private void DigWall(Collider2D collider, Vector3 wallPos)
