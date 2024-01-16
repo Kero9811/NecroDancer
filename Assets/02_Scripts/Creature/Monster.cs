@@ -56,7 +56,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public void Die()
+    public virtual void Die()
     {
         GameManager.Instance.player.killCount++;
         GameManager.Instance.player.CheckMultiPoint();

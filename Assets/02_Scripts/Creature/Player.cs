@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
     public Vector2 nextPos;
     public bool isCorrect;
     private bool refuseInput;
+    public AudioClip[] audioClips;
+    AudioSource audioSource;
 
     public WeaponType weaponType;
     public ShovelGrade shovelGrade;
@@ -59,6 +61,7 @@ public class Player : MonoBehaviour
         headRenderer = transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>();
         bodyRenderer = transform.GetChild(0).GetChild(1).GetComponent<SpriteRenderer>();
         changeColorNearPlayer = GetComponent<ChangeColorNearPlayer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -104,6 +107,8 @@ public class Player : MonoBehaviour
                             }
                             else
                             {
+                                audioSource.clip = audioClips[5];
+                                audioSource.Play();
                                 GameManager.Instance.shakeCamera.StartShake(5f, .1f);
                                 currentCoinPoint = 1;
                                 refuseInput = true;
@@ -163,6 +168,8 @@ public class Player : MonoBehaviour
                             }
                             else
                             {
+                                audioSource.clip = audioClips[5];
+                                audioSource.Play();
                                 GameManager.Instance.shakeCamera.StartShake(5f, .1f);
                                 currentCoinPoint = 1;
                                 refuseInput = true;
@@ -225,6 +232,8 @@ public class Player : MonoBehaviour
                             }
                             else
                             {
+                                audioSource.clip = audioClips[5];
+                                audioSource.Play();
                                 GameManager.Instance.shakeCamera.StartShake(5f, .1f);
                                 currentCoinPoint = 1;
                                 refuseInput = true;
@@ -287,6 +296,8 @@ public class Player : MonoBehaviour
                             }
                             else
                             {
+                                audioSource.clip = audioClips[5];
+                                audioSource.Play();
                                 GameManager.Instance.shakeCamera.StartShake(5f, .1f);
                                 currentCoinPoint = 1;
                                 refuseInput = true;
@@ -330,6 +341,8 @@ public class Player : MonoBehaviour
     {
         if (!isCorrect)
         {
+            audioSource.clip = audioClips[2];
+            audioSource.Play();
             GameManager.Instance.shakeCamera.StartShake(5f, .1f);
             currentCoinPoint = 1;
             refuseInput = true;
@@ -345,6 +358,8 @@ public class Player : MonoBehaviour
         {
             if (collider.TryGetComponent(out Monster monster))
             {
+                audioSource.clip = audioClips[0];
+                audioSource.Play();
                 monster.TakeDamage(damage);
                 isAttack = true;
             }
@@ -356,6 +371,8 @@ public class Player : MonoBehaviour
         GameManager.Instance.shakeCamera.StartShake(1f, .1f);
         if (collider.TryGetComponent(out Tilemap tileMap))
         {
+            audioSource.clip = audioClips[4];
+            audioSource.Play();
             Vector3Int cellPos = tileMap.WorldToCell(wallPos);
             tileMap.SetTile(cellPos, null);
         }
@@ -364,6 +381,9 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        audioSource.clip = audioClips[1];
+        audioSource.Play();
+
         GameManager.Instance.shakeCamera.StartShake(5f, .1f);
 
         currentHp -= damage;
@@ -373,8 +393,16 @@ public class Player : MonoBehaviour
         if (currentHp <= 0)
         {
             currentHp = 0;
-            //Die();
+            Die();
         }
+    }
+
+    public void Die()
+    {
+        audioSource.clip = audioClips[3];
+        audioSource.Play();
+
+        // »ç¸ÁÃ³¸®
     }
 
     public void Heal(int healPoint, int maxHeart)

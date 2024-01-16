@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Dragon : Monster
 {
@@ -12,6 +13,10 @@ public class Dragon : Monster
     Node StartNode, TargetNode, CurNode;
     List<Node> OpenList, ClosedList;
     MonsterHpUI monsterHp;
+    CapsuleCollider2D monsterCollider;
+    AudioSource audioSource;
+    public AudioClip[] audioClips;
+    Canvas canvas;
 
 
     [SerializeField] float maxHeight;
@@ -24,6 +29,9 @@ public class Dragon : Monster
     {
         base.Start();
         monsterHp = GetComponentInChildren<MonsterHpUI>();
+        monsterCollider = GetComponent<CapsuleCollider2D>();
+        audioSource = GetComponent<AudioSource>();
+        canvas = GetComponentInChildren<Canvas>();
     }
 
     public void Move()
@@ -43,7 +51,6 @@ public class Dragon : Monster
             Vector2 nextPos = new Vector2(FinalNodeList[1].x, FinalNodeList[1].y);
             CheckNextPos(nextPos);
 
-            spriteRenderer.flipX = nextPos.x < targetPos.x;
 
             if (nextPos == targetPos)
             {
@@ -51,8 +58,11 @@ public class Dragon : Monster
             }
             else if (!isFull)
             {
+                spriteRenderer.flipX = nextPos.x < targetPos.x;
                 GameManager.Instance.monstersNextPos.Add(nextPos);
                 Jump(nextPos);
+                audioSource.clip = audioClips[0];
+                audioSource.Play();
             }
             else { }
             isFull = false;
@@ -69,6 +79,8 @@ public class Dragon : Monster
 
     public override void TakeDamage(int damage)
     {
+        audioSource.clip = audioClips[1];
+        audioSource.Play();
         currentHp -= damage;
         monsterHp.ChangeHpUI();
 
@@ -77,6 +89,31 @@ public class Dragon : Monster
             currentHp = 0;
             Die();
         }
+    }
+
+    public override void Die()
+    {
+        audioSource.clip = audioClips[2];
+        audioSource.Play();
+        GameManager.Instance.player.killCount++;
+        GameManager.Instance.player.CheckMultiPoint();
+
+        GameManager.Instance.dragons.Remove(gameObject.GetComponent<Dragon>());
+
+        GameObject money = GameManager.Instance.pool.Get(1);
+        money.GetComponent<Money>().dropCoin = dropGold;
+        money.transform.position = transform.position;
+
+        canvas.enabled = false;
+        spriteRenderer.enabled = false;
+        monsterCollider.enabled = false;
+
+        Invoke("DestroyObject", 1.5f);
+    }
+
+    private void DestroyObject()
+    {
+        Destroy(gameObject);
     }
 
     public void PathFinding()
