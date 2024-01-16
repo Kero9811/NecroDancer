@@ -31,9 +31,19 @@ public class Food : Item
                 coinText.ChangeCoinUI();
                 player.Heal(healPoint, maxHeart);
                 hpUI.ChangeHpUI();
-                Destroy(gameObject);
+                spriteRenderer.enabled = false;
+                itemCollider.enabled = false;
+                text.text = "";
+                audioSource.Play();
+
+                Invoke("DestroyObject", 1.5f);
             }
             else { return; }
         }
+    }
+
+    private void DestroyObject()
+    {
+        Destroy(gameObject);
     }
 }

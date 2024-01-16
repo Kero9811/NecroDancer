@@ -13,11 +13,15 @@ public class Item : MonoBehaviour
     public TextMeshProUGUI text;
     public float distance;
     public bool isAlreadySpotted;
+    public AudioSource audioSource;
+    public BoxCollider2D itemCollider;
 
     public void Awake()
     {
         text = GetComponentInChildren<TextMeshProUGUI>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        itemCollider = GetComponent<BoxCollider2D>();
     }
 
     private void Update()
