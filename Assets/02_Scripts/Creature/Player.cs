@@ -401,6 +401,7 @@ public class Player : MonoBehaviour
         GameManager.Instance.shakeCamera.StartShake(5f, .1f);
 
         currentHp -= damage;
+        currentCoinPoint = 1;
 
         GameManager.Instance.controlHpUI.ChangeHpUI();
 
