@@ -13,6 +13,7 @@ public class GoldBat : Bat
     new void Start()
     {
         base.Start();
+        GameManager.Instance.bats.Add(gameObject.GetComponent<GoldBat>());
         monsterHpUI = GetComponentInChildren<MonsterHpUI>();
         audioSource = GetComponent<AudioSource>();
         canvas = GetComponentInChildren<Canvas>();
