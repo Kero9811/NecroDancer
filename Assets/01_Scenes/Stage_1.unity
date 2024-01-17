@@ -3611,12 +3611,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b5b305ebcc9fdb43b3c66f455935523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHp: 0
+  currentHp: 6
   maxHp: 6
   damage: 1
   digDamage: 1
-  defense: 0
-  currentCoinPoint: 0
+  currentCoinPoint: 1
   killCount: 0
   maxCoinPoint: 4
   coinAmount: 0
@@ -3651,6 +3650,8 @@ MonoBehaviour:
   isMiss: 0
   items: []
   resultUI: {fileID: 1576281855}
+  isDead: 0
+  clearCount: 0
 --- !u!70 &802260575
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -19780,6 +19781,8 @@ MonoBehaviour:
   noteManager: {fileID: 1185220885}
   tilemapRenderer: {fileID: 0}
   controlHpUI: {fileID: 367048176}
+  weaponUI: {fileID: 1555467550}
+  shovelUI: {fileID: 136821565}
   beatAudio: {fileID: 0}
   skeletons: []
   bats: []
@@ -28451,6 +28454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0185012175dd1df4695f64dda428dc7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 397680641}
 --- !u!1 &1660075342
 GameObject:
   m_ObjectHideFlags: 0
@@ -30378,6 +30382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isExecuted: 0
   sprite: {fileID: -1147596593, guid: 8f229b5a514b6674d8038588c37962a2, type: 3}
+  playerInfo: {fileID: 0}
 --- !u!1 &2033050200
 GameObject:
   m_ObjectHideFlags: 0

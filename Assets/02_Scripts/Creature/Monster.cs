@@ -25,7 +25,6 @@ public class Monster : MonoBehaviour
     public int actionCount;
     public int originCount;
     public bool isFull;
-    public float distance;
     public bool isAlreadySpotted;
 
     public Player target;
@@ -36,7 +35,6 @@ public class Monster : MonoBehaviour
     {
         currentHp = maxHp;
         actionCount = originCount;
-        distance = 3.9f;
     }
 
     public void Update()

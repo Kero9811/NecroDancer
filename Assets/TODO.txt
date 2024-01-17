@@ -1,11 +1,11 @@
 TODO:
 
-- 미니보스 처치 시 출구 열리기 (트리거 객체 심어놓고 죽으면 SetActive true, 심어놓은 객체의 position을 cellPosition으로 변환하여 타일도 변환)
-- 맵 2개 추가
+- 맵 추가
+- Result창 좀 더 수정
 - 코드 정리
 
 
- next TODO: 맵 제작 후 스테이지 연결
+ next TODO: 맵 제작 후 랜덤 스테이지
 
 
 *********************
@@ -24,4 +24,3 @@ TODO:
 - 위,아래 점프 부드럽게 코드 수정
 - 아이템마다 floating animation position 값을 다르게 줘서 다르게 움직이게 하기
 - 게임 시작 시 커서 숨기기
-- 빠른 재시작

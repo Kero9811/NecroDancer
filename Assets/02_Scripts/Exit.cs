@@ -49,4 +49,20 @@ public class Exit : MonoBehaviour
             spriteRenderer.color = myColor;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent(out Player player))
+        {
+            if (isExecuted)
+            {
+                player.resultUI.ControlPanel(player.isDead);
+                GameManager.Instance.skeletons.Clear();
+                GameManager.Instance.bats.Clear();
+                GameManager.Instance.blueSlimes.Clear();
+                GameManager.Instance.greenSlimes.Clear();
+                GameManager.Instance.dragons.Clear();
+            }
+        }
+    }
 }

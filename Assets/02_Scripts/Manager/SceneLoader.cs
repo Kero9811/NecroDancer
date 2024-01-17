@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    private SceneLoader instance;
-    public SceneLoader Instance { get { return instance; } }
+    private static SceneLoader instance;
+    public static SceneLoader Instance { get { return instance; } }
 
     //public int currentStageIdx;
 
@@ -28,7 +28,6 @@ public class SceneLoader : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         Time.timeScale = 1.0f;
-        GameManager.Instance.player.isDead = false;
         SceneManager.LoadScene(sceneName);
     }
 

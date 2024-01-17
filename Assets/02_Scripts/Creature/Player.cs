@@ -17,7 +17,6 @@ public class Player : MonoBehaviour
     public int maxHp;
     public int damage;
     public int digDamage;
-    public int defense;
     public int currentCoinPoint;
     public int killCount = 0;
     [SerializeField] int maxCoinPoint = 4;
@@ -426,7 +425,7 @@ public class Player : MonoBehaviour
         audioSource.clip = audioClips[3];
         audioSource.Play();
 
-        resultUI.ControlPanel();
+        resultUI.ControlPanel(isDead);
     }
 
     public void Heal(int healPoint, int maxHeart)
