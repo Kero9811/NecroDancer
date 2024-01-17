@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
     public static GameManager Instance {  get { return instance; } }
 
+    //public int currentSceneIdx;
     public CameraShake shakeCamera;
     public Player player;
     public TimingManager timingManager;
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     public NoteManager noteManager;
     public TilemapRenderer tilemapRenderer;
     public ControlHpUI controlHpUI;
+    public AudioSource beatAudio;
 
     // 스폰 시 리스트에 추가
     public List<Skeleton> skeletons = new List<Skeleton>();
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -43,6 +45,7 @@ public class GameManager : MonoBehaviour
     {
         shakeCamera = FindObjectOfType<CameraShake>();
         tilemapRenderer = GameObject.Find("Grid").transform.GetChild(0).GetComponent<TilemapRenderer>();
+        beatAudio = GameObject.FindWithTag("BeatManager").GetComponent<AudioSource>();
     }
 
     public void UpdateOnBPM()

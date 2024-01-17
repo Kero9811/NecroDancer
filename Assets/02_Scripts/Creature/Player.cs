@@ -78,6 +78,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        print(Time.timeScale);
         if (Time.time - lastInputTime >= inputCoolTime)
         {
             if (isMiss)

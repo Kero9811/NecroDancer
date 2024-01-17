@@ -119,19 +119,4 @@ public class Monster : MonoBehaviour
             spriteRenderer.color = myColor;
         }
     }
-
-
-    //public void CheckDistance()
-    //{
-    //    if (distance >= (GameManager.Instance.player.transform.position - transform.position).magnitude)
-    //    {
-    //        spriteRenderer.color = Color.white;
-    //        isAlreadySpotted = true;
-    //    }
-    //    else if (isAlreadySpotted)
-    //    {
-    //        spriteRenderer.color = target.GetComponent<ChangeColorNearPlayer>().alreadyCheckView;
-    //    }
-    //    else { return; }
-    //}
 }

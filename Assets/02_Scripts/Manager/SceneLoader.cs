@@ -8,26 +8,37 @@ public class SceneLoader : MonoBehaviour
     private SceneLoader instance;
     public SceneLoader Instance { get { return instance; } }
 
-    public int nextStageIdx;
+    //public int currentStageIdx;
 
-    private string[] stages = new string[] { "StartScene", "Stage_1", "Stage_2", "Stage_3" };
+    //private string[] stages = new string[] { "StartScene", "Stage_1", "Stage_2", "Stage_3" };
     
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
 
     private void Start()
     {
-        nextStageIdx = 1;
+        //currentStageIdx = GameManager.Instance.currentSceneIdx;
     }
 
     public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene(stages[nextStageIdx]);
+        SceneManager.LoadScene(sceneName);
+        Time.timeScale = 1.0f;
+    }
+
+    public void LoadGameScene(string sceneName)
+    {
+        GameManager.Instance.skeletons.Clear();
+        GameManager.Instance.bats.Clear();
+        GameManager.Instance.dragons.Clear();
+        GameManager.Instance.blueSlimes.Clear();
+        GameManager.Instance.greenSlimes.Clear();
+
+        SceneManager.LoadScene(sceneName);
     }
 }
