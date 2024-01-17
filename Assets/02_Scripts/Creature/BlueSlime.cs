@@ -77,8 +77,6 @@ public class BlueSlime : Monster
         {
             actionCount--;
         }
-
-        CheckDistance();
     }
 
     public override void TakeDamage(int damage)

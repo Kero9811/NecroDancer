@@ -91,8 +91,6 @@ public class Bat : Monster
         {
             actionCount--;
         }
-
-        CheckDistance();
     }
 
     private bool IsBlockedInDirection(Vector2 direction)

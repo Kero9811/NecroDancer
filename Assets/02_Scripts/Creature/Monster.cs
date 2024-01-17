@@ -30,6 +30,7 @@ public class Monster : MonoBehaviour
 
     public Player target;
     public SpriteRenderer spriteRenderer;
+    public ChangeColorNearPlayer changeColorNearPlayer;
 
     private void Awake()
     {
@@ -38,11 +39,17 @@ public class Monster : MonoBehaviour
         distance = 3.9f;
     }
 
+    public void Update()
+    {
+        CheckDistance();
+    }
+
     public void Start()
     {
         target = FindObjectOfType<Player>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         spriteRenderer.color = Color.black;
+        changeColorNearPlayer = GameManager.Instance.player.GetComponent<ChangeColorNearPlayer>();
     }
 
     public virtual void TakeDamage(int damage)
@@ -97,17 +104,34 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public void CheckDistance()
+    public virtual void CheckDistance()
     {
-        if (distance >= (GameManager.Instance.player.transform.position - transform.position).magnitude)
+        // -1칸씩 만큼 어긋나 있음 (임시조치 완)
+        if (changeColorNearPlayer.playerCellList.
+            Contains(new Vector3Int((int)transform.position.x - 1, (int)transform.position.y - 1, (int)transform.position.z)))
         {
             spriteRenderer.color = Color.white;
-            isAlreadySpotted = true;
         }
-        else if (isAlreadySpotted)
+        else
         {
-            spriteRenderer.color = target.GetComponent<ChangeColorNearPlayer>().alreadyCheckView;
+            Color myColor = spriteRenderer.color;
+            myColor.a = 0f;
+            spriteRenderer.color = myColor;
         }
-        else { return; }
     }
+
+
+    //public void CheckDistance()
+    //{
+    //    if (distance >= (GameManager.Instance.player.transform.position - transform.position).magnitude)
+    //    {
+    //        spriteRenderer.color = Color.white;
+    //        isAlreadySpotted = true;
+    //    }
+    //    else if (isAlreadySpotted)
+    //    {
+    //        spriteRenderer.color = target.GetComponent<ChangeColorNearPlayer>().alreadyCheckView;
+    //    }
+    //    else { return; }
+    //}
 }

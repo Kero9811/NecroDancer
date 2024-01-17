@@ -83,7 +83,6 @@ public class Skeleton : Monster
             actionCount--;
             animator.SetBool("ready", true);
         }
-        CheckDistance();
     }
 
     public void PathFinding()

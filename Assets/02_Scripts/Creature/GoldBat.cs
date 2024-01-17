@@ -21,6 +21,24 @@ public class GoldBat : Bat
         exit = FindObjectOfType<Exit>();
     }
 
+    public override void CheckDistance()
+    {
+        // -1칸씩 만큼 어긋나 있음 (임시조치 완)
+        if (changeColorNearPlayer.playerCellList.
+            Contains(new Vector3Int((int)transform.position.x - 1, (int)transform.position.y - 1, (int)transform.position.z)))
+        {
+            spriteRenderer.color = Color.white;
+            canvas.enabled = true;
+        }
+        else
+        {
+            Color myColor = spriteRenderer.color;
+            myColor.a = 0f;
+            spriteRenderer.color = myColor;
+            canvas.enabled = false;
+        }
+    }
+
     public override void TakeDamage(int damage)
     {
         currentHp -= damage;
@@ -45,7 +63,7 @@ public class GoldBat : Bat
         money.GetComponent<Money>().dropCoin = dropGold;
         money.transform.position = transform.position;
 
-        canvas.enabled = false;
+        canvas.gameObject.SetActive(false);
         spriteRenderer.enabled = false;
         monsterCollider.enabled = false;
 

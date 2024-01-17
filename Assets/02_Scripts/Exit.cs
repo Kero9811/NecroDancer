@@ -9,21 +9,21 @@ public class Exit : MonoBehaviour
     SpriteRenderer spriteRenderer;
     public bool isExecuted;
     public Sprite sprite;
-    public float distance;
-    public bool isAlreadySpotted;
     Player target;
+    ChangeColorNearPlayer changeColorNearPlayer;
 
     private void Start()
     {
-        distance = 3.9f;
         spriteRenderer = GetComponent<SpriteRenderer>();
         target = GameManager.Instance.player;
         spriteRenderer.color = Color.black;
+        changeColorNearPlayer = target.GetComponent<ChangeColorNearPlayer>();
     }
 
     private void Update()
     {
         OpenNextStage();
+        CheckDistance();
     }
 
     public void OpenNextStage()
@@ -36,15 +36,17 @@ public class Exit : MonoBehaviour
 
     public void CheckDistance()
     {
-        if (distance >= (GameManager.Instance.player.transform.position - transform.position).magnitude)
+        // -1칸씩 만큼 어긋나 있음 (임시조치 완)
+        if (changeColorNearPlayer.playerCellList.
+            Contains(new Vector3Int((int)transform.position.x - 1, (int)transform.position.y - 1, (int)transform.position.z)))
         {
             spriteRenderer.color = Color.white;
-            isAlreadySpotted = true;
         }
-        else if (isAlreadySpotted)
+        else
         {
-            spriteRenderer.color = target.GetComponent<ChangeColorNearPlayer>().alreadyCheckView;
+            Color myColor = spriteRenderer.color;
+            myColor.a = 0f;
+            spriteRenderer.color = myColor;
         }
-        else { return; }
     }
 }

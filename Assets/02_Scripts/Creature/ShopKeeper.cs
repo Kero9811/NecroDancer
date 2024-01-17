@@ -5,34 +5,40 @@ using UnityEngine;
 
 public class ShopKeeper : MonoBehaviour
 {
-    public float distance;
     SpriteRenderer spriteRenderer;
-    bool isAlreadySpotted;
     Player target;
+    ChangeColorNearPlayer changeColorNearPlayer;
 
     private void Awake()
     {
-        distance = 3.9f;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        spriteRenderer.color = Color.black;
     }
 
     private void Start()
     {
-        target = FindObjectOfType<Player>();
+        target = GameManager.Instance.player;
+        spriteRenderer.color = Color.black;
+        changeColorNearPlayer = target.GetComponent<ChangeColorNearPlayer>();
+    }
+
+    private void Update()
+    {
+        CheckDistance();
     }
 
     public void CheckDistance()
     {
-        if (distance >= (GameManager.Instance.player.transform.position - transform.position).magnitude)
+        // -1칸씩 만큼 어긋나 있음 (임시조치 완)
+        if (changeColorNearPlayer.playerCellList.
+            Contains(new Vector3Int((int)transform.position.x - 1, (int)transform.position.y - 1, (int)transform.position.z)))
         {
             spriteRenderer.color = Color.white;
-            isAlreadySpotted = true;
         }
-        else if (isAlreadySpotted)
+        else
         {
-            spriteRenderer.color = target.GetComponent<ChangeColorNearPlayer>().alreadyCheckView;
+            Color myColor = spriteRenderer.color;
+            myColor.a = 0f;
+            spriteRenderer.color = myColor;
         }
-        else { return; }
     }
 }
