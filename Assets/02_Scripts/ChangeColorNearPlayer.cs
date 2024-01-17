@@ -13,6 +13,8 @@ public class ChangeColorNearPlayer : MonoBehaviour
     public List<Vector3Int> beforeChangedCellList = new List<Vector3Int>();
     public List<Vector3Int> currentChangedCellList = new List<Vector3Int>();
 
+    public List<Vector3Int> playerCellList = new List<Vector3Int>();
+
     private void Start()
     {
         for (int i = 0; i < tilemaps.Length; i++)
@@ -41,11 +43,16 @@ public class ChangeColorNearPlayer : MonoBehaviour
                 for (int y = playerPos.y - sightRange; y <= playerPos.y + sightRange; y++)
                 {
                     Vector3Int tilePos = new Vector3Int(x, y, 0);
-                    currentChangedCellList.Add(tilePos);
+                    if (!currentChangedCellList.Contains(tilePos))
+                    {
+                        currentChangedCellList.Add(tilePos);
+                    }
                     tilemaps[i].SetColor(tilePos, Color.white);
                 }
             }
         }
+
+        playerCellList = new List<Vector3Int>(currentChangedCellList);
 
         beforeChangedCellList = beforeChangedCellList.Except(currentChangedCellList).ToList();
 

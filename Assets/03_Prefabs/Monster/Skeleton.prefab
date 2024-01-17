@@ -164,8 +164,8 @@ MonoBehaviour:
   isAlreadySpotted: 0
   target: {fileID: 0}
   spriteRenderer: {fileID: 0}
-  bottomLeft: {x: -100, y: -100}
-  topRight: {x: 100, y: 100}
+  bottomLeft: {x: -30, y: -30}
+  topRight: {x: 30, y: 30}
   startPos: {x: 0, y: 0}
   targetPos: {x: 0, y: 0}
   FinalNodeList: []

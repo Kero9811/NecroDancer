@@ -11,10 +11,11 @@ public class Item : MonoBehaviour
     public ChangeColorNearPlayer changeColorNearPlayer;
     public SpriteRenderer spriteRenderer;
     public TextMeshProUGUI text;
-    public float distance;
     public bool isAlreadySpotted;
     public AudioSource audioSource;
     public BoxCollider2D itemCollider;
+
+    private List<Vector3Int> playerCellList = new List<Vector3Int>();
 
     public void Awake()
     {
@@ -35,25 +36,28 @@ public class Item : MonoBehaviour
         changeColorNearPlayer = GameManager.Instance.player.GetComponent<ChangeColorNearPlayer>();
         spriteRenderer.color = Color.black;
         text.enabled = false;
-        distance = 3.9f;
     }
 
     public void CheckDistance()
     {
-        if (distance >= (GameManager.Instance.player.transform.position - transform.position).magnitude)
+        // -1칸씩 만큼 어긋나 있음 (임시조치 완)
+        playerCellList = changeColorNearPlayer.playerCellList;
+
+        if (playerCellList.
+            Contains(new Vector3Int((int)transform.position.x - 1, (int)transform.position.y - 1, (int)transform.position.z)))
         {
             spriteRenderer.color = Color.white;
-            isAlreadySpotted = true;
             if (!isUseable)
             {
                 text.enabled = true;
             }
         }
-        else if (isAlreadySpotted)
+        else
         {
-            spriteRenderer.color = changeColorNearPlayer.alreadyCheckView;
+            Color myColor = spriteRenderer.color;
+            myColor.a = 0f;
+            spriteRenderer.color = myColor;
             text.enabled = false;
         }
-        else { return; }
     }
 }
