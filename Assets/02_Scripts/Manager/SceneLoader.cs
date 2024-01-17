@@ -27,8 +27,9 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
         Time.timeScale = 1.0f;
+        GameManager.Instance.player.isDead = false;
+        SceneManager.LoadScene(sceneName);
     }
 
     public void LoadGameScene(string sceneName)
@@ -38,7 +39,8 @@ public class SceneLoader : MonoBehaviour
         GameManager.Instance.dragons.Clear();
         GameManager.Instance.blueSlimes.Clear();
         GameManager.Instance.greenSlimes.Clear();
-
+        Time.timeScale = 1.0f;
+        GameManager.Instance.player.isDead = false;
         SceneManager.LoadScene(sceneName);
     }
 }

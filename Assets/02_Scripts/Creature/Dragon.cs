@@ -59,6 +59,7 @@ public class Dragon : Monster
             if (nextPos == targetPos)
             {
                 target.TakeDamage(damage);
+                GameManager.Instance.monstersNextPos.Add(transform.position);
             }
             else if (!isFull)
             {
@@ -75,6 +76,7 @@ public class Dragon : Monster
         }
         else
         {
+            GameManager.Instance.monstersNextPos.Add(transform.position);
             actionCount--;
         }
     }

@@ -67,7 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -149,7 +149,7 @@ TextureImporter:
         width: 478
         height: 268
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -157,6 +157,27 @@ TextureImporter:
       bones: []
       spriteID: 47a3e21889020f541b99262ee7ca19a3
       internalID: -899159001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Title Screens_1
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 977
+        width: 219
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54c2f6922b13df24394950e7b3fe59bc
+      internalID: 628583951
       vertices: []
       indices: 
       edges: []
@@ -173,6 +194,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Title Screens_0: -899159001
+      Title Screens_1: 628583951
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

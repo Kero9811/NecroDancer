@@ -40,6 +40,7 @@ public class BlueSlime : Monster
                 CheckNextPos(nextPos);
                 if (nextPos == targetPos)
                 {
+                    GameManager.Instance.monstersNextPos.Add(transform.position);
                     target.TakeDamage(damage);
                 }
                 else if (!isFull)
@@ -59,6 +60,7 @@ public class BlueSlime : Monster
                 CheckNextPos(nextPos);
                 if (nextPos == targetPos)
                 {
+                    GameManager.Instance.monstersNextPos.Add(transform.position);
                     target.TakeDamage(damage);
                 }
                 else if (!isFull)
@@ -75,6 +77,7 @@ public class BlueSlime : Monster
         }
         else
         {
+            GameManager.Instance.monstersNextPos.Add(transform.position);
             actionCount--;
         }
     }

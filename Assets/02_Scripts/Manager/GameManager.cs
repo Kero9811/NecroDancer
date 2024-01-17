@@ -50,41 +50,45 @@ public class GameManager : MonoBehaviour
 
     public void UpdateOnBPM()
     {
-        noteManager.NoteSpawn();
-
-        if (!isMove)
+        if (!player.isDead)
         {
-            foreach (var skeleton in skeletons)
+            noteManager.NoteSpawn();
+
+            if (!isMove)
             {
-                skeleton.Move();
+                foreach (var skeleton in skeletons)
+                {
+                    skeleton.Move();
+                }
+
+                foreach (var bat in bats)
+                {
+                    bat.Move();
+                }
+
+                foreach (var dragon in dragons)
+                {
+                    dragon.Move();
+                }
+
+                foreach (var greenSlime in greenSlimes)
+                {
+                    greenSlime.Move();
+                }
+
+                foreach (var blueSlime in blueSlimes)
+                {
+                    blueSlime.Move();
+                }
+
+                player.isMiss = true;
+                monstersNextPos.Clear();
+                tilemapRenderer.enabled = !tilemapRenderer.enabled;
             }
 
-            foreach (var bat in bats)
-            {
-                bat.Move();
-            }
-
-            foreach (var dragon in dragons)
-            {
-                dragon.Move();
-            }
-
-            foreach (var greenSlime in greenSlimes)
-            {
-                greenSlime.Move();
-            }
-
-            foreach (var blueSlime in blueSlimes)
-            {
-                blueSlime.Move();
-            }
-
-            player.isMiss = true;
-            monstersNextPos.Clear();
-            tilemapRenderer.enabled = !tilemapRenderer.enabled;
+            isMove = false;
         }
-
-        isMove = false;
+        else { return; }
     }
 
     public void playerMove()

@@ -65,6 +65,7 @@ public class Skeleton : Monster
 
             if (nextPos == targetPos)
             {
+                GameManager.Instance.monstersNextPos.Add(transform.position);
                 target.TakeDamage(damage);
             }
             else if (!isFull)
@@ -80,6 +81,7 @@ public class Skeleton : Monster
         }
         else
         {
+            GameManager.Instance.monstersNextPos.Add(transform.position);
             actionCount--;
             animator.SetBool("ready", true);
         }

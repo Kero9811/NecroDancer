@@ -56,6 +56,8 @@ public class Player : MonoBehaviour
     public Item[] items;
     ShopKeeper shopKeeper;
     Exit exit;
+    public ResultUI resultUI;
+    public bool isDead;
 
     private void Awake()
     {
@@ -78,7 +80,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        print(Time.timeScale);
         if (Time.time - lastInputTime >= inputCoolTime)
         {
             if (isMiss)
@@ -408,6 +409,7 @@ public class Player : MonoBehaviour
 
         currentHp -= damage;
         currentCoinPoint = 1;
+        killCount = 0;
 
         GameManager.Instance.controlHpUI.ChangeHpUI();
 
@@ -420,10 +422,11 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
+        isDead = true;
         audioSource.clip = audioClips[3];
         audioSource.Play();
 
-        // ªÁ∏¡√≥∏Æ
+        resultUI.ControlPanel();
     }
 
     public void Heal(int healPoint, int maxHeart)
