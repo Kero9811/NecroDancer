@@ -256,19 +256,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed061e56cff69347b11e6df4d8c8ebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHp: 0
+  currentHp: 3
   maxHp: 3
   dropGold: 30
   damage: 2
   type: 6
   actionCount: 1
-  originCount: 1
+  originCount: 0
   isFull: 0
-  distance: 0
   isAlreadySpotted: 0
-  target: {fileID: 0}
-  spriteRenderer: {fileID: 0}
-  changeColorNearPlayer: {fileID: 0}
   targetPos: {x: 0, y: 0}
   slidingDuration: 0.1
   slideStartPos: {x: 0, y: 0, z: 0}

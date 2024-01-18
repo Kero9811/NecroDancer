@@ -10,7 +10,7 @@ public class ItemSpawner : MonoBehaviour
 
     private void Awake()
     {
-        spawnPoints = GetComponentsIntChildeExceptMe(spawnPoints);
+        spawnPoints = GetComponentsInChildrenExceptMe(spawnPoints);
     }
 
     private void Start()
@@ -38,7 +38,7 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 
-    private Transform[] GetComponentsIntChildeExceptMe(Transform[] transforms)
+    private Transform[] GetComponentsInChildrenExceptMe(Transform[] transforms)
     {
         transforms = GetComponentsInChildren<Transform>();
         List<Transform> list = new List<Transform>(transforms);

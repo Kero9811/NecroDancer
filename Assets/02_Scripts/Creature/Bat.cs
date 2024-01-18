@@ -103,7 +103,7 @@ public class Bat : Monster
         return hit.collider != null || hit2.Length >= 2;
     }
 
-    public void Slide(Vector3 targetPos)
+    private void Slide(Vector3 targetPos)
     {
         slideStartPos = transform.position;
         slideTargetPos = targetPos;

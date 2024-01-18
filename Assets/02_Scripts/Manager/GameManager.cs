@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
             isMove = false;
     }
 
-    public void playerMove()
+    public void PlayerMove()
     {
         foreach (var skeleton in skeletons)
         {

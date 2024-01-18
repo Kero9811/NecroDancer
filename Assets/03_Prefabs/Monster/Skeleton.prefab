@@ -152,18 +152,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7917702deab2bf94492e6cb9976fa6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHp: 0
+  currentHp: 1
   maxHp: 1
   dropGold: 15
   damage: 1
-  type: 0
   actionCount: 1
-  originCount: 1
   isFull: 0
-  distance: 0
   isAlreadySpotted: 0
-  target: {fileID: 0}
-  spriteRenderer: {fileID: 0}
   bottomLeft: {x: -30, y: -30}
   topRight: {x: 30, y: 30}
   startPos: {x: 0, y: 0}

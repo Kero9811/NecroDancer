@@ -461,18 +461,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e7244591ded514f9e4f2ff35c7881c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHp: 0
+  currentHp: 2
   maxHp: 2
   dropGold: 10
   damage: 1
   type: 4
   actionCount: 1
-  originCount: 1
+  originCount: 0
   isFull: 0
-  distance: 0
   isAlreadySpotted: 0
-  target: {fileID: 0}
-  spriteRenderer: {fileID: 0}
   maxHeight: 0.3
   jumpingDuration: 0.1
   jumpStartPos: {x: 0, y: 0, z: 0}

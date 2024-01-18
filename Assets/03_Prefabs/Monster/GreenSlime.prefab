@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06045b34c410b2d46af7fd6e210b0c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHp: 0
+  currentHp: 1
   maxHp: 1
   dropGold: 10
   damage: 100
@@ -54,10 +54,7 @@ MonoBehaviour:
   actionCount: 0
   originCount: 0
   isFull: 0
-  distance: 0
   isAlreadySpotted: 0
-  target: {fileID: 0}
-  spriteRenderer: {fileID: 0}
 --- !u!70 &6289387188021365728
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

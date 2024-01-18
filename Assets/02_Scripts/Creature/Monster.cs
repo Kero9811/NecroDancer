@@ -19,7 +19,6 @@ public class Monster : MonoBehaviour
     public int currentHp;
     public int maxHp;
     public int dropGold;
-
     public int damage;
     public Type type;
     public int actionCount;
@@ -27,9 +26,9 @@ public class Monster : MonoBehaviour
     public bool isFull;
     public bool isAlreadySpotted;
 
-    public Player target;
-    public SpriteRenderer spriteRenderer;
-    public ChangeColorNearPlayer changeColorNearPlayer;
+    protected Player target;
+    protected SpriteRenderer spriteRenderer;
+    protected ChangeColorNearPlayer changeColorNearPlayer;
 
     private void Awake()
     {

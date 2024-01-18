@@ -38,7 +38,7 @@ public class Weapon : Item
             {
                 audioSource.clip = audioClips[1];
                 audioSource.Play();
-                ChanageInfor(player);
+                ChanageInfo(player);
                 player.damage = originDmg;
                 player.horizontalRange = originHorizon;
                 player.verticalRange = originVertical;
@@ -51,7 +51,7 @@ public class Weapon : Item
                 audioSource.Play();
                 player.coinAmount -= price;
                 coinText.ChangeCoinUI();
-                ChanageInfor(player);
+                ChanageInfo(player);
                 player.damage = originDmg;
                 player.horizontalRange = originHorizon;
                 player.verticalRange = originVertical;
@@ -64,7 +64,7 @@ public class Weapon : Item
         }
     }
 
-    protected void ChanageInfor(Player player)
+    protected void ChanageInfo(Player player)
     {
         originDmg = damage;
         originHorizon = horizontalRange;

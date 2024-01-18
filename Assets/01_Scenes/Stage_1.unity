@@ -423,7 +423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 71853770}
   m_Layer: 0
-  m_Name: EnemySpawnPoints
+  m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3651,7 +3651,7 @@ MonoBehaviour:
   items: []
   resultUI: {fileID: 1576281855}
   isDead: 0
-  clearCount: 0
+  isDone: 0
 --- !u!70 &802260575
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -19781,8 +19781,6 @@ MonoBehaviour:
   noteManager: {fileID: 1185220885}
   tilemapRenderer: {fileID: 0}
   controlHpUI: {fileID: 367048176}
-  weaponUI: {fileID: 1555467550}
-  shovelUI: {fileID: 136821565}
   beatAudio: {fileID: 0}
   skeletons: []
   bats: []
@@ -30382,7 +30380,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isExecuted: 0
   sprite: {fileID: -1147596593, guid: 8f229b5a514b6674d8038588c37962a2, type: 3}
-  playerInfo: {fileID: 0}
 --- !u!1 &2033050200
 GameObject:
   m_ObjectHideFlags: 0

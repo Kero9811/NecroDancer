@@ -139,7 +139,7 @@ public class Dragon : Monster
         Destroy(gameObject);
     }
 
-    public void PathFinding()
+    private void PathFinding()
     {
         // NodeArray의 크기 정해주고, isWall, x, y 대입
         sizeX = topRight.x - bottomLeft.x + 1;
@@ -228,7 +228,7 @@ public class Dragon : Monster
         }
     }
 
-    public void Jump(Vector3 targetPos)
+    private void Jump(Vector3 targetPos)
     {
         jumpStartPos = transform.position;
         jumpTargetPos = targetPos;

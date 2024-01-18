@@ -12,7 +12,7 @@ public class MonsterSpawner : MonoBehaviour
 
     private void Awake()
     {
-        spawnPoints = GetComponentsIntChildeExceptMe(spawnPoints);
+        spawnPoints = GetComponentsInChildrenExceptMe(spawnPoints);
     }
 
     private void Start()
@@ -22,7 +22,6 @@ public class MonsterSpawner : MonoBehaviour
 
     void Spawn()
     {
-        // 랜덤한 포인트에서 스폰이 되는데 해당 포인트에서도 근처 랜덤 좌표로 스폰, 스폰 시 이미 스폰된 좌표가 있으면 다시 랜덤 좌표 선택
         for (int i = 0; i < monsterCount; i++)
         {
             int randomNum = Random.Range(0, monsterPrefabs.Length);
@@ -35,7 +34,7 @@ public class MonsterSpawner : MonoBehaviour
         eliteMonster.transform.SetParent(transform.parent);
     }
 
-    private Transform[] GetComponentsIntChildeExceptMe(Transform[] transforms)
+    private Transform[] GetComponentsInChildrenExceptMe(Transform[] transforms)
     {
         transforms = GetComponentsInChildren<Transform>();
         List<Transform> list = new List<Transform>(transforms);

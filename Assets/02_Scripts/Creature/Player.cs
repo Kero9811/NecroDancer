@@ -142,7 +142,7 @@ public class Player : MonoBehaviour
 
                     Jump(nextPos);
                     this.nextPos = nextPos;
-                    GameManager.Instance.playerMove();
+                    GameManager.Instance.PlayerMove();
                     changeColorNearPlayer.ChangeTileColor(nextPos);
                     FindItems();
                     FindMerchant();
@@ -205,7 +205,7 @@ public class Player : MonoBehaviour
 
                     Jump(nextPos);
                     this.nextPos = nextPos;
-                    GameManager.Instance.playerMove();
+                    GameManager.Instance.PlayerMove();
                     changeColorNearPlayer.ChangeTileColor(nextPos);
                     FindItems();
                     FindMerchant();
@@ -271,7 +271,7 @@ public class Player : MonoBehaviour
 
                     Jump(nextPos);
                     this.nextPos = nextPos;
-                    GameManager.Instance.playerMove();
+                    GameManager.Instance.PlayerMove();
                     changeColorNearPlayer.ChangeTileColor(nextPos);
                     FindItems();
                     FindMerchant();
@@ -337,7 +337,7 @@ public class Player : MonoBehaviour
 
                     Jump(nextPos);
                     this.nextPos = nextPos;
-                    GameManager.Instance.playerMove();
+                    GameManager.Instance.PlayerMove();
                     changeColorNearPlayer.ChangeTileColor(nextPos);
                     FindItems();
                     FindMerchant();

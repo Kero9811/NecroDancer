@@ -10,7 +10,7 @@ public enum State
 
 public class BlueSlime : Monster
 {
-    MonsterHpUI monsterHp;
+    MonsterHpUI monsterHpUI;
     State state;
 
     [SerializeField] float maxHeight;
@@ -22,7 +22,7 @@ public class BlueSlime : Monster
     new void Start()
     {
         base.Start();
-        monsterHp = GetComponentInChildren<MonsterHpUI>();
+        monsterHpUI = GetComponentInChildren<MonsterHpUI>();
         state = State.Up;
 
         GameManager.Instance.blueSlimes.Add(gameObject.GetComponent<BlueSlime>());
@@ -85,7 +85,7 @@ public class BlueSlime : Monster
     public override void TakeDamage(int damage)
     {
         currentHp -= damage;
-        monsterHp.ChangeHpUI();
+        monsterHpUI.ChangeHpUI();
 
         if (currentHp <= 0)
         {
