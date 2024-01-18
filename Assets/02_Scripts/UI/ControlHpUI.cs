@@ -89,7 +89,7 @@ public class ControlHpUI : MonoBehaviour
         CheckMaxHp();
     }
 
-    public void CheckMaxHp()
+    private void CheckMaxHp()
     {
         if (player.maxHp == 8)
         {

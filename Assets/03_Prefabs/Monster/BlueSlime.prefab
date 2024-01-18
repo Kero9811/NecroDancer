@@ -467,7 +467,7 @@ MonoBehaviour:
   damage: 1
   type: 4
   actionCount: 1
-  originCount: 0
+  originCount: 1
   isFull: 0
   isAlreadySpotted: 0
   maxHeight: 0.3

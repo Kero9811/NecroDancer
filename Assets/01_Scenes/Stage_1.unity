@@ -1196,11 +1196,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cb9754c576d3f48aa6cc7f5e3d2834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bpm: 115
-  _audioSource: {fileID: 294199565}
-  _intervals:
-  - _steps: 1
-    _trigger:
+  bpm: 115
+  audioSource: {fileID: 294199565}
+  intervals:
+  - steps: 1
+    trigger:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1424850914}

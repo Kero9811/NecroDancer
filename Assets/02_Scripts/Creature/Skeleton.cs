@@ -39,6 +39,8 @@ public class Skeleton : Monster
     new void Start()
     {
         base.Start();
+        originCount = 1;
+        actionCount = originCount;
         animator = GetComponentInChildren<Animator>();
 
         GameManager.Instance.skeletons.Add(gameObject.GetComponent<Skeleton>());

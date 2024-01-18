@@ -20,7 +20,8 @@ public class Bat : Monster
     new void Start()
     {
         base.Start();
-
+        originCount = 1;
+        actionCount = originCount;
         GameManager.Instance.bats.Add(gameObject.GetComponent<Bat>());
     }
 

@@ -156,7 +156,9 @@ MonoBehaviour:
   maxHp: 1
   dropGold: 15
   damage: 1
+  type: 0
   actionCount: 1
+  originCount: 1
   isFull: 0
   isAlreadySpotted: 0
   bottomLeft: {x: -30, y: -30}

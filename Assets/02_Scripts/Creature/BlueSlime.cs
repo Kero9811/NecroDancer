@@ -22,6 +22,8 @@ public class BlueSlime : Monster
     new void Start()
     {
         base.Start();
+        originCount = 1;
+        actionCount = originCount;
         monsterHpUI = GetComponentInChildren<MonsterHpUI>();
         state = State.Up;
 

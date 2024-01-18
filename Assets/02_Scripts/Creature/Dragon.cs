@@ -29,6 +29,8 @@ public class Dragon : Monster
     new void Start()
     {
         base.Start();
+        originCount = 1;
+        actionCount = originCount;
         monsterHp = GetComponentInChildren<MonsterHpUI>();
         monsterCollider = GetComponent<CapsuleCollider2D>();
         audioSource = GetComponent<AudioSource>();

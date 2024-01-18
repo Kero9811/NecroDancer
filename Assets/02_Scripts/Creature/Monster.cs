@@ -30,10 +30,9 @@ public class Monster : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
     protected ChangeColorNearPlayer changeColorNearPlayer;
 
-    private void Awake()
+    public void Awake()
     {
         currentHp = maxHp;
-        actionCount = originCount;
     }
 
     public void Update()

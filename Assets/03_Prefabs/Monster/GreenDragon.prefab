@@ -206,7 +206,7 @@ MonoBehaviour:
   damage: 2
   type: 1
   actionCount: 1
-  originCount: 0
+  originCount: 1
   isFull: 0
   isAlreadySpotted: 0
   bottomLeft: {x: -30, y: -30}
