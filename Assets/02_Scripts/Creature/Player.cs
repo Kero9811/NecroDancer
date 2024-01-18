@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
     Exit exit;
     public ResultUI resultUI;
     public bool isDead;
+    public bool isDone;
 
     private void Awake()
     {

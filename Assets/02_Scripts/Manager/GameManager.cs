@@ -50,8 +50,10 @@ public class GameManager : MonoBehaviour
 
     public void UpdateOnBPM()
     {
-        if (!player.isDead)
+        if (player.isDead || player.isDone)
         {
+            return;
+        }
             noteManager.NoteSpawn();
 
             if (!isMove)
@@ -87,8 +89,6 @@ public class GameManager : MonoBehaviour
             }
 
             isMove = false;
-        }
-        else { return; }
     }
 
     public void playerMove()

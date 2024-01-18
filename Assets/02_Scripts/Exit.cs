@@ -56,12 +56,13 @@ public class Exit : MonoBehaviour
         {
             if (isExecuted)
             {
+                player.isDone = true;
                 player.resultUI.ControlPanel(player.isDead);
-                GameManager.Instance.skeletons.Clear();
-                GameManager.Instance.bats.Clear();
-                GameManager.Instance.blueSlimes.Clear();
-                GameManager.Instance.greenSlimes.Clear();
-                GameManager.Instance.dragons.Clear();
+                //GameManager.Instance.skeletons.Clear();
+                //GameManager.Instance.bats.Clear();
+                //GameManager.Instance.blueSlimes.Clear();
+                //GameManager.Instance.greenSlimes.Clear();
+                //GameManager.Instance.dragons.Clear();
             }
         }
     }
