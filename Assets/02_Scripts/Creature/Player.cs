@@ -76,6 +76,8 @@ public class Player : MonoBehaviour
         shopKeeper = FindObjectOfType<ShopKeeper>();
         exit = FindObjectOfType<Exit>();
         currentCoinPoint = 1;
+
+        //PlayerInfo.Instance.UpdatePlayerInfo();
     }
 
     private void Update()

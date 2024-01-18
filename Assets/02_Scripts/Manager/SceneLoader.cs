@@ -11,7 +11,7 @@ public class SceneLoader : MonoBehaviour
     //public int currentStageIdx;
 
     //private string[] stages = new string[] { "StartScene", "Stage_1", "Stage_2", "Stage_3" };
-    
+
     private void Awake()
     {
         if (instance == null)

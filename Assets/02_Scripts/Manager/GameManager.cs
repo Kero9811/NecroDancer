@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            //DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -46,6 +45,7 @@ public class GameManager : MonoBehaviour
         shakeCamera = FindObjectOfType<CameraShake>();
         tilemapRenderer = GameObject.Find("Grid").transform.GetChild(0).GetComponent<TilemapRenderer>();
         beatAudio = GameObject.FindWithTag("BeatManager").GetComponent<AudioSource>();
+        //currentSceneIdx = 1;
     }
 
     public void UpdateOnBPM()

@@ -29,10 +29,15 @@ public class PlayerInfo : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        //SceneManager.sceneLoaded += UpdatePlayerInfo;
+        DownloadInfo();
     }
+
+    //private void OnEnable()
+    //{
+    //    SceneManager.sceneLoaded += UpdatePlayerInfo;
+    //}
 
     public void DownloadInfo()
     {
@@ -47,7 +52,7 @@ public class PlayerInfo : MonoBehaviour
         playerVerticalRange = GameManager.Instance.player.verticalRange;
     }
 
-    public void UpdatePlayerInfo(Scene scene, LoadSceneMode mode)
+    public void UpdatePlayerInfo()
     {
         print("a");
         GameManager.Instance.player.maxHp = playerMaxHp; 
