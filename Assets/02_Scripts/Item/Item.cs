@@ -11,7 +11,6 @@ public class Item : MonoBehaviour
     public ChangeColorNearPlayer changeColorNearPlayer;
     public SpriteRenderer spriteRenderer;
     public TextMeshProUGUI text;
-    public bool isAlreadySpotted;
     public AudioSource audioSource;
     public BoxCollider2D itemCollider;
 
@@ -40,7 +39,6 @@ public class Item : MonoBehaviour
 
     public void CheckDistance()
     {
-        // -1칸씩 만큼 어긋나 있음 (임시조치 완)
         playerCellList = changeColorNearPlayer.playerCellList;
 
         if (playerCellList.

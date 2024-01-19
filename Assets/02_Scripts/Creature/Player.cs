@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
         exit = FindObjectOfType<Exit>();
         currentCoinPoint = 1;
 
-        //PlayerInfo.Instance.UpdatePlayerInfo();
+        PlayerInfo.Instance.UpdatePlayerInfo();
     }
 
     private void Update()
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
         {
             if (isMiss)
             {
-                lastInputTime = Time.time -.1f;
+                lastInputTime = Time.time - .1f;
                 isMiss = false;
                 return;
             }
@@ -356,8 +356,7 @@ public class Player : MonoBehaviour
     {
         if (!isCorrect)
         {
-            audioSource.clip = audioClips[2];
-            audioSource.Play();
+            audioSource.PlayOneShot(audioClips[2], 1f);
             GameManager.Instance.shakeCamera.StartShake(5f, .1f);
             currentCoinPoint = 1;
             refuseInput = true;
@@ -373,8 +372,7 @@ public class Player : MonoBehaviour
         {
             if (collider.TryGetComponent(out Monster monster))
             {
-                audioSource.clip = audioClips[0];
-                audioSource.Play();
+                audioSource.PlayOneShot(audioClips[0]);
                 monster.TakeDamage(damage);
                 isAttack = true;
             }
@@ -394,8 +392,7 @@ public class Player : MonoBehaviour
         GameManager.Instance.shakeCamera.StartShake(1f, .1f);
         if (collider.TryGetComponent(out Tilemap tileMap))
         {
-            audioSource.clip = audioClips[4];
-            audioSource.Play();
+            audioSource.PlayOneShot(audioClips[4]);
             Vector3Int cellPos = tileMap.WorldToCell(wallPos);
             tileMap.SetTile(cellPos, null);
         }
@@ -404,8 +401,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        audioSource.clip = audioClips[1];
-        audioSource.Play();
+        audioSource.PlayOneShot(audioClips[1]);
 
         GameManager.Instance.shakeCamera.StartShake(5f, .1f);
 
@@ -425,8 +421,7 @@ public class Player : MonoBehaviour
     public void Die()
     {
         isDead = true;
-        audioSource.clip = audioClips[3];
-        audioSource.Play();
+        audioSource.PlayOneShot(audioClips[3]);
 
         resultUI.ControlPanel(isDead);
     }

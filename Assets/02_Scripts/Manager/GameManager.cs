@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
     public static GameManager Instance {  get { return instance; } }
 
-    //public int currentSceneIdx;
     public CameraShake shakeCamera;
     public Player player;
     public TimingManager timingManager;
@@ -20,6 +19,9 @@ public class GameManager : MonoBehaviour
     public NoteManager noteManager;
     public TilemapRenderer tilemapRenderer;
     public ControlHpUI controlHpUI;
+    public WeaponUI weaponUI;
+    public ShovelUI shovelUI;
+    public CoinText coinText;
     public AudioSource beatAudio;
 
     // 스폰 시 리스트에 추가
@@ -45,50 +47,56 @@ public class GameManager : MonoBehaviour
         shakeCamera = FindObjectOfType<CameraShake>();
         tilemapRenderer = GameObject.Find("Grid").transform.GetChild(0).GetComponent<TilemapRenderer>();
         beatAudio = GameObject.FindWithTag("BeatManager").GetComponent<AudioSource>();
-        //currentSceneIdx = 1;
     }
 
     public void UpdateOnBPM()
     {
+        if (!beatAudio.isPlaying && !player.isDone)
+        {
+            player.isDead = true;
+            player.resultUI.ControlPanel(player.isDead);
+        }
+
         if (player.isDead || player.isDone)
         {
             return;
         }
-            noteManager.NoteSpawn();
 
-            if (!isMove)
+        noteManager.NoteSpawn();
+
+        if (!isMove)
+        {
+            foreach (var skeleton in skeletons)
             {
-                foreach (var skeleton in skeletons)
-                {
-                    skeleton.Move();
-                }
-
-                foreach (var bat in bats)
-                {
-                    bat.Move();
-                }
-
-                foreach (var dragon in dragons)
-                {
-                    dragon.Move();
-                }
-
-                foreach (var greenSlime in greenSlimes)
-                {
-                    greenSlime.Move();
-                }
-
-                foreach (var blueSlime in blueSlimes)
-                {
-                    blueSlime.Move();
-                }
-
-                player.isMiss = true;
-                monstersNextPos.Clear();
-                tilemapRenderer.enabled = !tilemapRenderer.enabled;
+                skeleton.Move();
             }
 
-            isMove = false;
+            foreach (var bat in bats)
+            {
+                bat.Move();
+            }
+
+            foreach (var dragon in dragons)
+            {
+                dragon.Move();
+            }
+
+            foreach (var greenSlime in greenSlimes)
+            {
+                greenSlime.Move();
+            }
+
+            foreach (var blueSlime in blueSlimes)
+            {
+                blueSlime.Move();
+            }
+
+            player.isMiss = true;
+            monstersNextPos.Clear();
+        }
+
+        tilemapRenderer.enabled = !tilemapRenderer.enabled;
+        isMove = false;
     }
 
     public void PlayerMove()
@@ -119,7 +127,6 @@ public class GameManager : MonoBehaviour
         }
 
         monstersNextPos.Clear();
-        tilemapRenderer.enabled = !tilemapRenderer.enabled;
         isMove = true;
     }
 }

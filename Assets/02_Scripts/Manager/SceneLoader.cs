@@ -8,9 +8,7 @@ public class SceneLoader : MonoBehaviour
     private static SceneLoader instance;
     public static SceneLoader Instance { get { return instance; } }
 
-    //public int currentStageIdx;
-
-    //private string[] stages = new string[] { "StartScene", "Stage_1", "Stage_2", "Stage_3" };
+    public string[] stages = new string[] { "StartScene", "Stage_1", "Stage_2", "Stage_3" };
 
     private void Awake()
     {
@@ -20,26 +18,31 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        //currentStageIdx = GameManager.Instance.currentSceneIdx;
-    }
-
     public void LoadScene(string sceneName)
     {
         Time.timeScale = 1.0f;
+
+        if (PlayerInfo.Instance != null)
+        {
+            PlayerInfo.Instance.currentStageIdx = 1;
+            PlayerInfo.Instance.playerMaxHp = 6;
+            PlayerInfo.Instance.playerCurrentHp = 6;
+            PlayerInfo.Instance.playerDamage = 1;
+            PlayerInfo.Instance.playerDigPower = 1;
+            PlayerInfo.Instance.playerWeapon = WeaponType.Dagger;
+            PlayerInfo.Instance.playerShovel = ShovelGrade.Iron;
+            PlayerInfo.Instance.playerCoinAmount = 0;
+            PlayerInfo.Instance.playerHorizontalRange = 1;
+            PlayerInfo.Instance.playerVerticalRange = 1;
+        }
+        
         SceneManager.LoadScene(sceneName);
     }
 
     public void LoadGameScene(string sceneName)
     {
-        GameManager.Instance.skeletons.Clear();
-        GameManager.Instance.bats.Clear();
-        GameManager.Instance.dragons.Clear();
-        GameManager.Instance.blueSlimes.Clear();
-        GameManager.Instance.greenSlimes.Clear();
         Time.timeScale = 1.0f;
         GameManager.Instance.player.isDead = false;
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(stages[PlayerInfo.Instance.currentStageIdx]);
     }
 }

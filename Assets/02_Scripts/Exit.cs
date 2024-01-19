@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class Exit : MonoBehaviour
@@ -11,13 +12,17 @@ public class Exit : MonoBehaviour
     public Sprite sprite;
     Player target;
     ChangeColorNearPlayer changeColorNearPlayer;
+    public bool isAlreadySpotted;
+    Color myColor;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         target = GameManager.Instance.player;
-        spriteRenderer.color = Color.black;
         changeColorNearPlayer = target.GetComponent<ChangeColorNearPlayer>();
+        myColor = spriteRenderer.color;
+        myColor.a = 0f;
+        spriteRenderer.color = myColor;
     }
 
     private void Update()
@@ -36,17 +41,19 @@ public class Exit : MonoBehaviour
 
     public void CheckDistance()
     {
-        // -1칸씩 만큼 어긋나 있음 (임시조치 완)
         if (changeColorNearPlayer.playerCellList.
             Contains(new Vector3Int((int)transform.position.x - 1, (int)transform.position.y - 1, (int)transform.position.z)))
         {
             spriteRenderer.color = Color.white;
+            isAlreadySpotted = true;
         }
         else
         {
-            Color myColor = spriteRenderer.color;
-            myColor.a = 0f;
-            spriteRenderer.color = myColor;
+            if (isAlreadySpotted)
+            {
+                spriteRenderer.color = changeColorNearPlayer.alreadyCheckView;
+            }
+            else { return; }
         }
     }
 
@@ -57,12 +64,16 @@ public class Exit : MonoBehaviour
             if (isExecuted)
             {
                 player.isDone = true;
-                player.resultUI.ControlPanel(player.isDead);
-                //GameManager.Instance.skeletons.Clear();
-                //GameManager.Instance.bats.Clear();
-                //GameManager.Instance.blueSlimes.Clear();
-                //GameManager.Instance.greenSlimes.Clear();
-                //GameManager.Instance.dragons.Clear();
+                PlayerInfo.Instance.DownloadInfo();
+                if (PlayerInfo.Instance.currentStageIdx == 4)
+                {
+                    PlayerInfo.Instance.currentStageIdx = 1;
+                    player.resultUI.ControlPanel(player.isDead);
+                }
+                else
+                {
+                    SceneLoader.Instance.LoadGameScene(SceneLoader.Instance.stages[PlayerInfo.Instance.currentStageIdx]);
+                }
             }
         }
     }

@@ -18,6 +18,8 @@ public class PlayerInfo : MonoBehaviour
     public int playerHorizontalRange;
     public int playerVerticalRange;
 
+    public int currentStageIdx;
+
     public int clearCount;
 
     private void Awake()
@@ -34,13 +36,9 @@ public class PlayerInfo : MonoBehaviour
         DownloadInfo();
     }
 
-    //private void OnEnable()
-    //{
-    //    SceneManager.sceneLoaded += UpdatePlayerInfo;
-    //}
-
     public void DownloadInfo()
     {
+        currentStageIdx++;
         playerMaxHp = GameManager.Instance.player.maxHp;
         playerCurrentHp = GameManager.Instance.player.currentHp;
         playerDamage = GameManager.Instance.player.damage;
@@ -54,7 +52,6 @@ public class PlayerInfo : MonoBehaviour
 
     public void UpdatePlayerInfo()
     {
-        print("a");
         GameManager.Instance.player.maxHp = playerMaxHp; 
         GameManager.Instance.player.currentHp = playerCurrentHp;
         GameManager.Instance.player.damage = playerDamage;
@@ -66,7 +63,8 @@ public class PlayerInfo : MonoBehaviour
         GameManager.Instance.player.verticalRange = playerVerticalRange;
 
         GameManager.Instance.controlHpUI.ChangeHpUI();
-        //GameManager.Instance.weaponUI.ChangeWeapon(playerWeapon);
-        //GameManager.Instance.shovelUI.ChangeShovel(playerShovel);
+        GameManager.Instance.weaponUI.ChangeWeapon(playerWeapon);
+        GameManager.Instance.shovelUI.ChangeShovel(playerShovel);
+        GameManager.Instance.coinText.ChangeCoinUI();
     }
 }

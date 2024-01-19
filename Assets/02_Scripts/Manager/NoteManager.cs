@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NoteManager : MonoBehaviour
 {
@@ -43,6 +44,9 @@ public class NoteManager : MonoBehaviour
 
         leftNote.transform.localScale = originScale;
         rightNote.transform.localScale = originScale;
+
+        leftNote.gameObject.GetComponent<Image>().enabled = true;
+        rightNote.gameObject.GetComponent<Image>().enabled = true;
 
         heart.SetAsLastSibling();
     }

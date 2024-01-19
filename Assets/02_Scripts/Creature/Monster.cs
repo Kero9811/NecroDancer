@@ -102,7 +102,6 @@ public class Monster : MonoBehaviour
 
     public virtual void CheckDistance()
     {
-        // -1칸씩 만큼 어긋나 있음 (임시조치 완)
         if (changeColorNearPlayer.playerCellList.
             Contains(new Vector3Int((int)transform.position.x - 1, (int)transform.position.y - 1, (int)transform.position.z)))
         {
