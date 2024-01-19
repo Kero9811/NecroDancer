@@ -20,8 +20,6 @@ public class PlayerInfo : MonoBehaviour
 
     public int currentStageIdx;
 
-    public int clearCount;
-
     private void Awake()
     {
         if (instance == null)

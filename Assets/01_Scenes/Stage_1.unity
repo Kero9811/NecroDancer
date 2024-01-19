@@ -3620,7 +3620,7 @@ MonoBehaviour:
   maxCoinPoint: 4
   coinAmount: 0
   lastInputTime: 0
-  inputCoolTime: 0.2
+  inputCoolTime: 0.1
   maxHeight: 0.3
   jumpingDuration: 0.1
   isMoving: 0
