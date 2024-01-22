@@ -3,7 +3,7 @@ TODO:
 - Result창 좀 더 수정
 
 
- next TODO: 
+ next TODO: 현재 프로젝트 따로 백업 해놓고 입력 방식 Input System을 이용한 입력처리로 변경 시도
 
 *********************
  기획서 작성 잊지 말기
